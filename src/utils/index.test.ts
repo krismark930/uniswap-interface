@@ -55,15 +55,15 @@ describe('utils', () => {
     })
 
     it('returns the checksummed address', () => {
-      expect(isAddress('0xf164fc0ec4e93095b804a4795bbe1e041497b92a')).toBe('0xf164fC0Ec4E93095b804a4795bBe1e041497b92a')
-      expect(isAddress('0xf164fC0Ec4E93095b804a4795bBe1e041497b92a')).toBe('0xf164fC0Ec4E93095b804a4795bBe1e041497b92a')
+      expect(isAddress('0xA8c3182047C8D9f8933c2D1304B92aFd215Ada2C')).toBe('0xA8c3182047C8D9f8933c2D1304B92aFd215Ada2C')
+      expect(isAddress('0xA8c3182047C8D9f8933c2D1304B92aFd215Ada2C')).toBe('0xA8c3182047C8D9f8933c2D1304B92aFd215Ada2C')
     })
 
     it('succeeds even without prefix', () => {
-      expect(isAddress('f164fc0ec4e93095b804a4795bbe1e041497b92a')).toBe('0xf164fC0Ec4E93095b804a4795bBe1e041497b92a')
+      expect(isAddress('A8c3182047C8D9f8933c2D1304B92aFd215Ada2C')).toBe('0xA8c3182047C8D9f8933c2D1304B92aFd215Ada2C')
     })
     it('fails if too long', () => {
-      expect(isAddress('f164fc0ec4e93095b804a4795bbe1e041497b92a0')).toBe(false)
+      expect(isAddress('A8c3182047C8D9f8933c2D1304B92aFd215Ada2C0')).toBe(false)
     })
   })
 
@@ -73,11 +73,11 @@ describe('utils', () => {
     })
 
     it('truncates middle characters', () => {
-      expect(shortenAddress('0xf164fc0ec4e93095b804a4795bbe1e041497b92a')).toBe('0xf164...b92a')
+      expect(shortenAddress('0xA8c3182047C8D9f8933c2D1304B92aFd215Ada2C')).toBe('0xf164...b92a')
     })
 
     it('truncates middle characters even without prefix', () => {
-      expect(shortenAddress('f164fc0ec4e93095b804a4795bbe1e041497b92a')).toBe('0xf164...b92a')
+      expect(shortenAddress('A8c3182047C8D9f8933c2D1304B92aFd215Ada2C')).toBe('0xf164...b92a')
     })
 
     it('renders checksummed address', () => {
