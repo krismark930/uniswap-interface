@@ -3,7 +3,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
 
-export const ROUTER_ADDRESS = '0x4Ec23Fc4d7f7c25c99E96684086EaBb959f68D3C'
+export const ROUTER_ADDRESS = '0xFd91f022D16BE1B889f3d236Bcc2DaF80b92Cc4d'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
@@ -27,13 +27,13 @@ export const AVERAGE_BLOCK_TIME_IN_SECS = 13
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320
 export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LENGTH_IN_BLOCKS
 
-export const GOVERNANCE_ADDRESS = '0x1BdB91F9C153E5cd02E9867bABe97951E821D6F7'
+export const GOVERNANCE_ADDRESS = '0xBB62F0C4494fdb8576Ae6c94bC4E9F1e6C95b287'
 
-export const TIMELOCK_ADDRESS = '0xa569a98D49233B49c1D51F339809A6D7E705A795'
+export const TIMELOCK_ADDRESS = '0x109CFeD64057CbF40bb26c02BEEBc9f090A08B0e'
 
 
 // const UNI_ADDRESS = '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
-const UNI_ADDRESS = '0xa530a15EE3CEeF7eCaDBfb67fB476EC156AFd694'
+const UNI_ADDRESS = '0xf23c8693BbBD21cC0B5912ac33a2Ff32E6cb891E'
 export const UNI: { [chainId in ChainId]: Token } = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
