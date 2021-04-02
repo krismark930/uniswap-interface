@@ -9,10 +9,10 @@ Preparation steps:
 
 1. Deploy the necessary contracts from https://github.com/Cyber-Core/uniswap-governance
    and https://github.com/Cyber-Core/uniswap-v2-periphery. For this:
-   a) clone repositories
-   b) run `yarn && yarn compile`
-   c) deploy contracts `node node_modules/mocha/bin/mocha --grep " deploy contracts$"`
-   d) copy lines with contracts addresses into appropriate location in update_contracts.sh
+   1. clone repositories
+   2. run `yarn && yarn compile`
+   3. deploy contracts `node node_modules/mocha/bin/mocha --grep " deploy contracts$"`
+   4. copy lines with contracts addresses into appropriate location in update_contracts.sh
 
 2. Install dependencies `yarn`
 3. Patch Uniswap SDK: `patch -p0 <node_modules.patch`
