@@ -1,3 +1,25 @@
+# Adaptation for Solana NEON
+
+This section describes how to launch Uniswap Interface on Solana NEON.
+Some additional steps are required to work correctly in this environment.
+These steps are related to deploying the necessary contracts and changing
+the addresses of the contracts to the actual ones.
+
+Preparation steps:
+
+1. Deploy the necessary contracts from https://github.com/Cyber-Core/uniswap-governance
+   and https://github.com/Cyber-Core/uniswap-v2-periphery. For this:
+   1. clone repositories
+   2. run `yarn && yarn compile`
+   3. deploy contracts `node node_modules/mocha/bin/mocha --grep " deploy contracts$"`
+   4. copy lines with contracts addresses into appropriate location in update_contracts.sh
+
+2. Install dependencies `yarn`
+3. Patch Uniswap SDK: `patch -p0 <node_modules.patch`
+4. Change contract addresses to actual: `./update_contracts.sh`
+5. Run: `yarn start`
+
+
 # Uniswap Interface
 
 [![Lint](https://github.com/Uniswap/uniswap-interface/workflows/Lint/badge.svg)](https://github.com/Uniswap/uniswap-interface/actions?query=workflow%3ALint)
