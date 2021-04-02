@@ -88,10 +88,13 @@ export function tryParseAmount(value?: string, currency?: Currency): CurrencyAmo
   return undefined
 }
 
+const FACTORY_ADDRESS = '0xD0803cDd4962432E0A5bA374E287Caed31DE8596'
+const ROUTER1_ADDRESS = '0xB6Decc616aD58af849Efacf55d3b897A4D2e2b6b'
+const ROUTER_ADDRESS = '0x686D81237C6319e3E482893C70BEF01EeF8a9423'
 const BAD_RECIPIENT_ADDRESSES: string[] = [
-  '0xF2BfB82D6834a4E0879CC1d91c48a913209CfA5F', // v2 factory
-  '0xBBb9B403eC2aAfc5824C1504c1eEA7b501e73752', // v2 router 01
-  '0xFd91f022D16BE1B889f3d236Bcc2DaF80b92Cc4d' // v2 router 02
+    FACTORY_ADDRESS,
+    ROUTER1_ADDRESS,
+    ROUTER_ADDRESS
 ]
 
 /**
