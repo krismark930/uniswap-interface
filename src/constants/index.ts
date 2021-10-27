@@ -39,7 +39,10 @@ export const UNI: { [chainId in ChainId]: Token } = {
   [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.LOCAL]: new Token(ChainId.LOCAL, UNI_ADDRESS, 18, 'UNI', 'Uniswap')
+  [ChainId.LOCAL]: new Token(ChainId.LOCAL, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
+  [ChainId.NEONMAIN]: new Token(ChainId.NEONMAIN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
+  [ChainId.NEONDEV]: new Token(ChainId.NEONDEV, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
+  [ChainId.NEONTEST]: new Token(ChainId.NEONTEST, UNI_ADDRESS, 18, 'UNI', 'Uniswap')
 }
 
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
@@ -59,7 +62,10 @@ const WETH_ONLY: ChainTokenList = {
   [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
   [ChainId.GÖRLI]: [WETH[ChainId.GÖRLI]],
   [ChainId.KOVAN]: [WETH[ChainId.KOVAN]],
-  [ChainId.LOCAL]: [WETH[ChainId.LOCAL]]
+  [ChainId.LOCAL]: [WETH[ChainId.LOCAL]],
+  [ChainId.NEONMAIN]: [WETH[ChainId.NEONMAIN]],
+  [ChainId.NEONDEV]: [WETH[ChainId.NEONDEV]],
+  [ChainId.NEONTEST]: [WETH[ChainId.NEONTEST]]
 }
 
 // used to construct intermediary pairs for trading
