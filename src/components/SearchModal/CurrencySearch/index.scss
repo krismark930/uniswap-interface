@@ -1,0 +1,14 @@
+.currency-search {
+  display: flex;
+  flex-direction: column;
+  &__footer {
+    display: flex;
+    width: 100%;
+  }
+  &__manage-btn {
+    width: 100%;
+  }
+  &__list {
+    flex-grow: 1;
+  }
+}

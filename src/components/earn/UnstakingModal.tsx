@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Modal from '../Modal'
 import { AutoColumn } from '../Column'
 import styled from 'styled-components'
-import { RowBetween } from '../Row'
 import { TYPE, CloseIcon } from '../../theme'
 import { ButtonError } from '../Button'
 import { StakingInfo } from '../../state/stake/hooks'
@@ -67,13 +66,13 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
   }
 
   return (
-    <Modal isOpen={isOpen} onDismiss={wrappedOndismiss} maxHeight={90}>
+    <Modal isOpen={isOpen} onDismiss={wrappedOndismiss}>
       {!attempting && !hash && (
         <ContentWrapper gap="lg">
-          <RowBetween>
+          <div className='flex justify-between'>
             <TYPE.mediumHeader>Withdraw</TYPE.mediumHeader>
             <CloseIcon onClick={wrappedOndismiss} />
-          </RowBetween>
+          </div>
           {stakingInfo?.stakedAmount && (
             <AutoColumn justify="center" gap="md">
               <TYPE.body fontWeight={600} fontSize={36}>

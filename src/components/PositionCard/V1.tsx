@@ -5,9 +5,7 @@ import { Token, TokenAmount, WETH } from '@uniswap/sdk'
 import { Text } from 'rebass'
 import { AutoColumn } from '../Column'
 import { ButtonSecondary } from '../Button'
-import { RowBetween, RowFixed } from '../Row'
-import { FixedHeightRow, HoverCard } from './index'
-import DoubleCurrencyLogo from '../DoubleLogo'
+import { RowFixed } from '../Row'
 import { useActiveWeb3React } from '../../hooks'
 import { ThemeContext } from 'styled-components'
 
@@ -21,12 +19,12 @@ function V1PositionCard({ token, V1LiquidityBalance }: PositionCardProps) {
 
   const { chainId } = useActiveWeb3React()
 
+
   return (
-    <HoverCard>
+    <div className='pool-card-clip pool-card-gradient p-4'>
       <AutoColumn gap="12px">
-        <FixedHeightRow>
+        <div className='flex justify-between h-24px'>
           <RowFixed>
-            <DoubleCurrencyLogo currency0={token} margin={true} size={20} />
             <Text fontWeight={500} fontSize={20} style={{ marginLeft: '' }}>
               {`${chainId && token.equals(WETH[chainId]) ? 'WETH' : token.symbol}/ETH`}
             </Text>
@@ -43,10 +41,10 @@ function V1PositionCard({ token, V1LiquidityBalance }: PositionCardProps) {
               V1
             </Text>
           </RowFixed>
-        </FixedHeightRow>
+        </div>
 
         <AutoColumn gap="8px">
-          <RowBetween marginTop="10px">
+          <div className='flex justify-between mt-2'>
             <ButtonSecondary width="68%" as={Link} to={`/migrate/v1/${V1LiquidityBalance.token.address}`}>
               Migrate
             </ButtonSecondary>
@@ -59,10 +57,10 @@ function V1PositionCard({ token, V1LiquidityBalance }: PositionCardProps) {
             >
               Remove
             </ButtonSecondary>
-          </RowBetween>
+          </div>
         </AutoColumn>
       </AutoColumn>
-    </HoverCard>
+    </div>
   )
 }
 

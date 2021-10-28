@@ -1,11 +1,8 @@
 import { Currency, CurrencyAmount, Fraction, Percent } from '@uniswap/sdk'
 import React from 'react'
-import { Text } from 'rebass'
 import { ButtonPrimary } from '../../components/Button'
-import { RowBetween, RowFixed } from '../../components/Row'
-import CurrencyLogo from '../../components/CurrencyLogo'
 import { Field } from '../../state/mint/actions'
-import { TYPE } from '../../theme'
+import { useDarkModeManager } from 'state/user/hooks'
 
 export function ConfirmAddModalBottom({
   noLiquidity,
@@ -22,46 +19,39 @@ export function ConfirmAddModalBottom({
   poolTokenPercentage?: Percent
   onAdd: () => void
 }) {
+  const [darkMode] = useDarkModeManager()
   return (
-    <>
-      <RowBetween>
-        <TYPE.body>{currencies[Field.CURRENCY_A]?.symbol} Deposited</TYPE.body>
-        <RowFixed>
-          <CurrencyLogo currency={currencies[Field.CURRENCY_A]} style={{ marginRight: '8px' }} />
-          <TYPE.body>{parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}</TYPE.body>
-        </RowFixed>
-      </RowBetween>
-      <RowBetween>
-        <TYPE.body>{currencies[Field.CURRENCY_B]?.symbol} Deposited</TYPE.body>
-        <RowFixed>
-          <CurrencyLogo currency={currencies[Field.CURRENCY_B]} style={{ marginRight: '8px' }} />
-          <TYPE.body>{parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}</TYPE.body>
-        </RowFixed>
-      </RowBetween>
-      <RowBetween>
-        <TYPE.body>Rates</TYPE.body>
-        <TYPE.body>
+    <div className={`${darkMode ? 'text-white' : 'text-dark'}`}>
+      <div className='flex justify-between'>
+        <div>{currencies[Field.CURRENCY_A]?.symbol} Deposited</div>
+        <div>{parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}</div>
+      </div>
+      <div className='flex justify-between'>
+        <div>{currencies[Field.CURRENCY_B]?.symbol} Deposited</div>
+        <div>{parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}</div>
+      </div>
+      <div className='flex justify-between'>
+        <div>Rates</div>
+        <div>
           {`1 ${currencies[Field.CURRENCY_A]?.symbol} = ${price?.toSignificant(4)} ${
             currencies[Field.CURRENCY_B]?.symbol
           }`}
-        </TYPE.body>
-      </RowBetween>
-      <RowBetween style={{ justifyContent: 'flex-end' }}>
-        <TYPE.body>
+        </div>
+      </div>
+      <div className='flex justify-end'>
+        <div>
           {`1 ${currencies[Field.CURRENCY_B]?.symbol} = ${price?.invert().toSignificant(4)} ${
             currencies[Field.CURRENCY_A]?.symbol
           }`}
-        </TYPE.body>
-      </RowBetween>
-      <RowBetween>
-        <TYPE.body>Share of Pool:</TYPE.body>
-        <TYPE.body>{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</TYPE.body>
-      </RowBetween>
-      <ButtonPrimary style={{ margin: '20px 0 0 0' }} onClick={onAdd}>
-        <Text fontWeight={500} fontSize={20}>
-          {noLiquidity ? 'Create Pool & Supply' : 'Confirm Supply'}
-        </Text>
+        </div>
+      </div>
+      <div className='flex justify-between'>
+        <div>Share of Pool:</div>
+        <div>{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</div>
+      </div>
+      <ButtonPrimary className='mt-5' onClick={onAdd}>
+        {noLiquidity ? 'Create Pool & Supply' : 'Confirm Supply'}
       </ButtonPrimary>
-    </>
+    </div>
   )
 }

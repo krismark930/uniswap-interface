@@ -1,0 +1,55 @@
+.settings {
+  margin-left: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: none;
+  text-align: left;
+  $parent: &;
+  &--light {
+    #{$parent}__modal {
+      border: 0;
+      box-shadow: 0px 8px 16px rgba(130, 134, 171, 0.12);
+      background-color: $white;
+      color: $dark;
+    }
+  }
+  &__modal {
+    position: absolute;
+    top: 2rem;
+    right: 0rem;
+    border: 1px solid $inp-bg-dark;
+    background-color: $dark;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    min-width: 350px;
+    color: $white;
+    @include media('>=xSmall', '<medium') {
+      min-width: 280px;
+    }
+  }
+  &__title {
+    @extend %title;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+}
+
+.exp-mode-confirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  background: $dark;
+  &__title {
+    @extend %title;
+    font-size: 20px;
+    text-align: center;
+  }
+  &--light {
+    color: $white;
+  }
+}

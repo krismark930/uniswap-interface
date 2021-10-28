@@ -1,12 +1,9 @@
 import { Currency, Percent, Price } from '@uniswap/sdk'
-import React, { useContext } from 'react'
-import { Text } from 'rebass'
-import { ThemeContext } from 'styled-components'
+import React from 'react'
 import { AutoColumn } from '../../components/Column'
 import { AutoRow } from '../../components/Row'
 import { ONE_BIPS } from '../../constants'
 import { Field } from '../../state/mint/actions'
-import { TYPE } from '../../theme'
 
 export function PoolPriceBar({
   currencies,
@@ -19,32 +16,31 @@ export function PoolPriceBar({
   poolTokenPercentage?: Percent
   price?: Price
 }) {
-  const theme = useContext(ThemeContext)
   return (
     <AutoColumn gap="md">
       <AutoRow justify="space-around" gap="4px">
         <AutoColumn justify="center">
-          <TYPE.black>{price?.toSignificant(6) ?? '-'}</TYPE.black>
-          <Text fontWeight={500} fontSize={14} color={theme.text2} pt={1}>
+          <div className='pt-1 text-dark'>{price?.toSignificant(6) ?? '-'}</div>
+          <div className='pt-1 text-dark'>
             {currencies[Field.CURRENCY_B]?.symbol} per {currencies[Field.CURRENCY_A]?.symbol}
-          </Text>
+          </div>
         </AutoColumn>
         <AutoColumn justify="center">
-          <TYPE.black>{price?.invert()?.toSignificant(6) ?? '-'}</TYPE.black>
-          <Text fontWeight={500} fontSize={14} color={theme.text2} pt={1}>
+        <div className='pt-1 text-dark'>{price?.invert()?.toSignificant(6) ?? '-'}</div>
+          <div className='pt-1 text-dark'>
             {currencies[Field.CURRENCY_A]?.symbol} per {currencies[Field.CURRENCY_B]?.symbol}
-          </Text>
+          </div>
         </AutoColumn>
         <AutoColumn justify="center">
-          <TYPE.black>
+        <div className='pt-1 text-dark'>
             {noLiquidity && price
               ? '100'
               : (poolTokenPercentage?.lessThan(ONE_BIPS) ? '<0.01' : poolTokenPercentage?.toFixed(2)) ?? '0'}
             %
-          </TYPE.black>
-          <Text fontWeight={500} fontSize={14} color={theme.text2} pt={1}>
+            </div>
+          <div className='pt-1 text-dark'>
             Share of Pool
-          </Text>
+          </div>
         </AutoColumn>
       </AutoRow>
     </AutoColumn>

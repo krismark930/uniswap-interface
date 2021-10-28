@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Modal from '../Modal'
 import { AutoColumn } from '../Column'
 import styled from 'styled-components'
-import { RowBetween } from '../Row'
 import { TYPE, CloseIcon } from '../../theme'
 import { ButtonError } from '../Button'
 import { StakingInfo } from '../../state/stake/hooks'
@@ -66,13 +65,13 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
   }
 
   return (
-    <Modal isOpen={isOpen} onDismiss={wrappedOnDismiss} maxHeight={90}>
+    <Modal isOpen={isOpen} onDismiss={wrappedOnDismiss}>
       {!attempting && !hash && (
         <ContentWrapper gap="lg">
-          <RowBetween>
+          <div className='flex justify-between'>
             <TYPE.mediumHeader>Claim</TYPE.mediumHeader>
             <CloseIcon onClick={wrappedOnDismiss} />
-          </RowBetween>
+          </div>
           {stakingInfo?.earnedAmount && (
             <AutoColumn justify="center" gap="md">
               <TYPE.body fontWeight={600} fontSize={36}>

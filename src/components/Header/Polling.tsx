@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
-import { TYPE, ExternalLink } from '../../theme'
+import { TYPE } from '../../theme'
 
 import { useBlockNumber } from '../../state/application/hooks'
-import { getEtherscanLink } from '../../utils'
-import { useActiveWeb3React } from '../../hooks'
 
 const StyledPolling = styled.div`
   position: fixed;
@@ -63,7 +61,6 @@ const Spinner = styled.div`
 `
 
 export default function Polling() {
-  const { chainId } = useActiveWeb3React()
 
   const blockNumber = useBlockNumber()
 
@@ -84,11 +81,9 @@ export default function Polling() {
   )
 
   return (
-    <ExternalLink href={chainId && blockNumber ? getEtherscanLink(chainId, blockNumber.toString(), 'block') : ''}>
       <StyledPolling>
         <TYPE.small style={{ opacity: isMounted ? '0.2' : '0.6' }}>{blockNumber}</TYPE.small>
         <StyledPollingDot>{!isMounted && <Spinner />}</StyledPollingDot>
       </StyledPolling>
-    </ExternalLink>
   )
 }

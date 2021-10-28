@@ -1,0 +1,31 @@
+$dark: #0E0E0E;
+$white: #fff;
+$grey-purple: #8286AB;
+$red: #FD4040;
+$blue: #4355F9;
+$purple: #CE3A8B;
+$graydark: #40444F;
+$gray: #464646;
+$inp-bg-dark: #242424;
+$inp-bg-light: #F7F8FF;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$breakpoints: (xSmall: 500px, small: 720px, medium: 960px, large: 1280px);
+
+%title {
+    font-family: 'Chakra Petch';
+}
+
+%plate {
+    width: 100%;
+    max-width: 1120px;
+    padding: 0 24px;
+    margin-left: auto;
+    margin-right: auto;
+    @include media('>=xSmall', '<medium') {
+      padding: 0 5%;
+    }
+}

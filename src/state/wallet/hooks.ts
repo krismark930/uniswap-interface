@@ -1,4 +1,4 @@
-import { UNI } from './../../constants/index'
+import { UNI } from '../../constants/index'
 import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount } from '@uniswap/sdk'
 import { useMemo } from 'react'
 import ERC20_INTERFACE from '../../constants/abis/erc20'

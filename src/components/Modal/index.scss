@@ -1,0 +1,54 @@
+.modal {
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  $parent: &;
+  &:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #8A8A8A;
+    opacity: 0.2;
+    content: '';
+  }
+  &--light {
+    #{$parent}__content {
+      color: $dark;
+      background-color: $white !important;
+    }
+  }
+  &__content {
+    position: relative;
+    width: 100% !important;
+    max-width: 400px;
+    padding: 0 !important;
+    color: $white;
+    background-color: $dark !important;
+  }
+  &-header {
+    padding: 1.5rem 1.2rem;
+    border-bottom: 1px solid $inp-bg-dark;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    @extend %title;
+    svg {
+      cursor: pointer;
+      path {
+        fill: $purple;
+      }
+      &:hover {
+        path {
+          fill: $blue;
+        }
+      }
+    }
+  }
+  &-wrapper {
+    padding: 24px;
+  }
+}

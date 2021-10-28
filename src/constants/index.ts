@@ -1,9 +1,9 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@uniswap/sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
-import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
+import { injected } from '../connectors'
 
-export const ROUTER_ADDRESS = '0x686D81237C6319e3E482893C70BEF01EeF8a9423'
+export const ROUTER_ADDRESS = '0x12993d55b96db38947d12753F6CE09Ab9Fe721A7'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
@@ -27,10 +27,9 @@ export const AVERAGE_BLOCK_TIME_IN_SECS = 13
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320
 export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LENGTH_IN_BLOCKS
 
-export const GOVERNANCE_ADDRESS = '0x641fED19CdfEf0f392F7572264CF6328F6D18774'
+export const GOVERNANCE_ADDRESS = '0x50dbC82D76409D19544d6ca95D844633E222aC71'
 
-export const TIMELOCK_ADDRESS = '0x2f54D2d443e82275BBaCB12C68B0a8e67e1C6db7'
-
+export const TIMELOCK_ADDRESS = '0xaD2d6a3fB00D6aD878c11eAf06F848c311CFf372'
 
 const UNI_ADDRESS = '0x51179e1BCe688B1c8047B01422FB0f8634E77eb3'
 export const UNI: { [chainId in ChainId]: Token } = {
@@ -120,15 +119,15 @@ export interface WalletInfo {
 }
 
 export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
-  INJECTED: {
-    connector: injected,
-    name: 'Injected',
-    iconName: 'arrow-right.svg',
-    description: 'Injected web3 provider.',
-    href: null,
-    color: '#010101',
-    primary: true
-  },
+  // INJECTED: {
+  //   connector: injected,
+  //   name: 'Injected',
+  //   iconName: 'arrow-right.svg',
+  //   description: 'Injected web3 provider.',
+  //   href: null,
+  //   color: '#010101',
+  //   primary: true
+  // },
   METAMASK: {
     connector: injected,
     name: 'MetaMask',
@@ -137,50 +136,50 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     href: null,
     color: '#E8831D'
   },
-  WALLET_CONNECT: {
-    connector: walletconnect,
-    name: 'WalletConnect',
-    iconName: 'walletConnectIcon.svg',
-    description: 'Connect to Trust Wallet, Rainbow Wallet and more...',
-    href: null,
-    color: '#4196FC',
-    mobile: true
-  },
-  WALLET_LINK: {
-    connector: walletlink,
-    name: 'Coinbase Wallet',
-    iconName: 'coinbaseWalletIcon.svg',
-    description: 'Use Coinbase Wallet app on mobile device',
-    href: null,
-    color: '#315CF5'
-  },
-  COINBASE_LINK: {
-    name: 'Open in Coinbase Wallet',
-    iconName: 'coinbaseWalletIcon.svg',
-    description: 'Open in Coinbase Wallet app.',
-    href: 'https://go.cb-w.com/mtUDhEZPy1',
-    color: '#315CF5',
-    mobile: true,
-    mobileOnly: true
-  },
-  FORTMATIC: {
-    connector: fortmatic,
-    name: 'Fortmatic',
-    iconName: 'fortmaticIcon.png',
-    description: 'Login using Fortmatic hosted wallet',
-    href: null,
-    color: '#6748FF',
-    mobile: true
-  },
-  Portis: {
-    connector: portis,
-    name: 'Portis',
-    iconName: 'portisIcon.png',
-    description: 'Login using Portis hosted wallet',
-    href: null,
-    color: '#4A6C9B',
-    mobile: true
-  }
+  // WALLET_CONNECT: {
+  //   connector: walletconnect,
+  //   name: 'WalletConnect',
+  //   iconName: 'walletConnectIcon.svg',
+  //   description: 'Connect to Trust Wallet, Rainbow Wallet and more...',
+  //   href: null,
+  //   color: '#4196FC',
+  //   mobile: true
+  // },
+  // WALLET_LINK: {
+  //   connector: walletlink,
+  //   name: 'Coinbase Wallet',
+  //   iconName: 'coinbaseWalletIcon.svg',
+  //   description: 'Use Coinbase Wallet app on mobile device',
+  //   href: null,
+  //   color: '#315CF5'
+  // },
+  // COINBASE_LINK: {
+  //   name: 'Open in Coinbase Wallet',
+  //   iconName: 'coinbaseWalletIcon.svg',
+  //   description: 'Open in Coinbase Wallet app.',
+  //   href: 'https://go.cb-w.com/mtUDhEZPy1',
+  //   color: '#315CF5',
+  //   mobile: true,
+  //   mobileOnly: true
+  // },
+  // FORTMATIC: {
+  //   connector: fortmatic,
+  //   name: 'Fortmatic',
+  //   iconName: 'fortmaticIcon.png',
+  //   description: 'Login using Fortmatic hosted wallet',
+  //   href: null,
+  //   color: '#6748FF',
+  //   mobile: true
+  // },
+  // Portis: {
+  //   connector: portis,
+  //   name: 'Portis',
+  //   iconName: 'portisIcon.png',
+  //   description: 'Login using Portis hosted wallet',
+  //   href: null,
+  //   color: '#4A6C9B',
+  //   mobile: true
+  // }
 }
 
 export const NetworkContextName = 'NETWORK'

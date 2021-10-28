@@ -1,17 +1,15 @@
-import { ChainId, Currency } from '@uniswap/sdk'
+import { Currency } from '@uniswap/sdk'
 import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import Modal from '../Modal'
-import { ExternalLink } from '../../theme'
 import { Text } from 'rebass'
 import { CloseIcon, CustomLightSpinner } from '../../theme/components'
-import { RowBetween, RowFixed } from '../Row'
+import { RowFixed } from '../Row'
 import { AlertTriangle, ArrowUpCircle, CheckCircle } from 'react-feather'
 import { ButtonPrimary, ButtonLight } from '../Button'
 import { AutoColumn, ColumnCenter } from '../Column'
 import Circle from '../../assets/images/blue-loader.svg'
 import MetaMaskLogo from '../../assets/images/metamask.png'
-import { getEtherscanLink } from '../../utils'
 import { useActiveWeb3React } from '../../hooks'
 import useAddTokenToMetamask from 'hooks/useAddTokenToMetamask'
 
@@ -24,8 +22,6 @@ const Section = styled(AutoColumn)`
 
 const BottomSection = styled(Section)`
   background-color: ${({ theme }) => theme.bg2};
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
 `
 
 const ConfirmedIcon = styled(ColumnCenter)`
@@ -40,30 +36,28 @@ const StyledLogo = styled.img`
 
 function ConfirmationPendingContent({ onDismiss, pendingText }: { onDismiss: () => void; pendingText: string }) {
   return (
-    <Wrapper>
-      <Section>
-        <RowBetween>
+    <div className='w-full'>
+      <div className='flex flex-col p-6'>
+        <div className='flex justify-between'>
           <div />
           <CloseIcon onClick={onDismiss} />
-        </RowBetween>
-        <ConfirmedIcon>
+        </div>
+        <div className='py-10 flex flex-col items-center'>
           <CustomLightSpinner src={Circle} alt="loader" size={'90px'} />
-        </ConfirmedIcon>
-        <AutoColumn gap="12px" justify={'center'}>
+        </div>
+        <div className='flex flex-col items-center'>
           <Text fontWeight={500} fontSize={20}>
             Waiting For Confirmation
           </Text>
-          <AutoColumn gap="12px" justify={'center'}>
-            <Text fontWeight={600} fontSize={14} color="" textAlign="center">
-              {pendingText}
-            </Text>
-          </AutoColumn>
+          <Text fontWeight={600} fontSize={14} color="" textAlign="center">
+           {pendingText}
+          </Text>
           <Text fontSize={12} color="#565A69" textAlign="center">
             Confirm this transaction in your wallet
           </Text>
-        </AutoColumn>
-      </Section>
-    </Wrapper>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -75,7 +69,7 @@ function TransactionSubmittedContent({
 }: {
   onDismiss: () => void
   hash: string | undefined
-  chainId: ChainId
+  chainId: number,
   currencyToAdd?: Currency | undefined
 }) {
   const theme = useContext(ThemeContext)
@@ -87,10 +81,10 @@ function TransactionSubmittedContent({
   return (
     <Wrapper>
       <Section>
-        <RowBetween>
+        <div className='flex justify-between'>
           <div />
           <CloseIcon onClick={onDismiss} />
-        </RowBetween>
+        </div>
         <ConfirmedIcon>
           <ArrowUpCircle strokeWidth={0.5} size={90} color={theme.primary1} />
         </ConfirmedIcon>
@@ -98,15 +92,8 @@ function TransactionSubmittedContent({
           <Text fontWeight={500} fontSize={20}>
             Transaction Submitted
           </Text>
-          {chainId && hash && (
-            <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')}>
-              <Text fontWeight={500} fontSize={14} color={theme.primary1}>
-                View on Etherscan
-              </Text>
-            </ExternalLink>
-          )}
           {currencyToAdd && library?.provider?.isMetaMask && (
-            <ButtonLight mt="12px" padding="6px 12px" width="fit-content" onClick={addToken}>
+            <ButtonLight onClick={addToken}>
               {!success ? (
                 <RowFixed>
                   Add {currencyToAdd.symbol} to Metamask <StyledLogo src={MetaMaskLogo} />
@@ -144,12 +131,12 @@ export function ConfirmationModalContent({
   return (
     <Wrapper>
       <Section>
-        <RowBetween>
+        <div className='flex justify-between'>
           <Text fontWeight={500} fontSize={20}>
             {title}
           </Text>
           <CloseIcon onClick={onDismiss} />
-        </RowBetween>
+        </div>
         {topContent()}
       </Section>
       <BottomSection gap="12px">{bottomContent()}</BottomSection>
@@ -162,15 +149,15 @@ export function TransactionErrorContent({ message, onDismiss }: { message: strin
   return (
     <Wrapper>
       <Section>
-        <RowBetween>
+        <div className='flex justify-between'>
           <Text fontWeight={500} fontSize={20}>
             Error
           </Text>
           <CloseIcon onClick={onDismiss} />
-        </RowBetween>
+        </div>
         <AutoColumn style={{ marginTop: 20, padding: '2rem 0' }} gap="24px" justify="center">
           <AlertTriangle color={theme.red1} style={{ strokeWidth: 1.5 }} size={64} />
-          <Text fontWeight={500} fontSize={16} color={theme.red1} style={{ textAlign: 'center', width: '85%' }}>
+          <Text fontWeight={500} fontSize={16} color={theme.red1} style={{ textAlign: 'center', width: '85%', wordBreak: 'break-word' }}>
             {message}
           </Text>
         </AutoColumn>
@@ -207,7 +194,7 @@ export default function TransactionConfirmationModal({
 
   // confirmation screen
   return (
-    <Modal isOpen={isOpen} onDismiss={onDismiss} maxHeight={90}>
+    <Modal isOpen={isOpen} onDismiss={onDismiss}>
       {attemptingTxn ? (
         <ConfirmationPendingContent onDismiss={onDismiss} pendingText={pendingText} />
       ) : hash ? (

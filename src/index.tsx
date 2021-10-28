@@ -1,3 +1,4 @@
+import './styles/index.scss'
 import { createWeb3ReactRoot, Web3ReactProvider } from '@web3-react/core'
 import 'inter-ui'
 import React, { StrictMode } from 'react'
@@ -17,7 +18,7 @@ import ListsUpdater from './state/lists/updater'
 import MulticallUpdater from './state/multicall/updater'
 import TransactionUpdater from './state/transactions/updater'
 import UserUpdater from './state/user/updater'
-import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from './theme'
+import ThemeProvider from './theme'
 import getLibrary from './utils/getLibrary'
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
@@ -57,14 +58,12 @@ function Updaters() {
 
 ReactDOM.render(
   <StrictMode>
-    <FixedGlobalStyle />
     <Web3ReactProvider getLibrary={getLibrary}>
       <Web3ProviderNetwork getLibrary={getLibrary}>
         <Blocklist>
           <Provider store={store}>
             <Updaters />
             <ThemeProvider>
-              <ThemedGlobalStyle />
               <HashRouter>
                 <App />
               </HashRouter>

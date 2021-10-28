@@ -1,4 +1,4 @@
-import { UNSUPPORTED_LIST_URLS } from './../../constants/lists'
+import { UNSUPPORTED_LIST_URLS } from '../../constants/lists'
 import DEFAULT_TOKEN_LIST from '@uniswap/default-token-list'
 import { ChainId, Token } from '@uniswap/sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
@@ -37,11 +37,11 @@ export type TokenAddressMap = Readonly<
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: TokenAddressMap = {
+  [ChainId.MAINNET]: {},
   [ChainId.KOVAN]: {},
   [ChainId.RINKEBY]: {},
   [ChainId.ROPSTEN]: {},
   [ChainId.GÖRLI]: {},
-  [ChainId.MAINNET]: {},
   [ChainId.LOCAL]: {},
   [ChainId.NEONMAIN]: {},
   [ChainId.NEONDEV]: {},

@@ -1,0 +1,32 @@
+.numerical-input {
+  position: relative;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  color: $white;
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: transparent;
+  text-overflow: ellipsis;
+  padding: 0px;
+  &--light {
+    color: $dark;
+  }
+  -webkit-appearance: textfield;
+  ::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  [type='number'] {
+    -moz-appearance: textfield;
+  }
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  &--error {
+    color: $red;
+  }
+  &--light {
+    color: $dark;
+  }
+}

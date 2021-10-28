@@ -14,7 +14,6 @@ import { ExternalLink, StyledInternalLink, TYPE, UniTokenAnimated } from '../../
 import { computeUniCirculation } from '../../utils/computeUniCirculation'
 import useUSDCPrice from '../../utils/useUSDCPrice'
 import { AutoColumn } from '../Column'
-import { RowBetween } from '../Row'
 import { Break, CardBGImage, CardNoise, CardSection, DataCard } from '../earn/styled'
 
 const ContentWrapper = styled(AutoColumn)`
@@ -66,10 +65,10 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
         <CardBGImage />
         <CardNoise />
         <CardSection gap="md">
-          <RowBetween>
+          <div className='flex justify-between'>
             <TYPE.white color="white">Your UNI Breakdown</TYPE.white>
             <StyledClose stroke="white" onClick={() => setShowUniBalanceModal(false)} />
-          </RowBetween>
+          </div>
         </CardSection>
         <Break />
         {account && (
@@ -82,11 +81,11 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
                 </TYPE.white>
               </AutoColumn>
               <AutoColumn gap="md">
-                <RowBetween>
+                <div className='flex justify-between'>
                   <TYPE.white color="white">Balance:</TYPE.white>
                   <TYPE.white color="white">{uniBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.white>
-                </RowBetween>
-                <RowBetween>
+                </div>
+                <div className='flex justify-between'>
                   <TYPE.white color="white">Unclaimed:</TYPE.white>
                   <TYPE.white color="white">
                     {uniToClaim?.toFixed(4, { groupSeparator: ',' })}{' '}
@@ -96,7 +95,7 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
                       </StyledInternalLink>
                     )}
                   </TYPE.white>
-                </RowBetween>
+                </div>
               </AutoColumn>
             </CardSection>
             <Break />
@@ -104,18 +103,18 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
         )}
         <CardSection gap="sm">
           <AutoColumn gap="md">
-            <RowBetween>
+            <div className='flex justify-between'>
               <TYPE.white color="white">UNI price:</TYPE.white>
               <TYPE.white color="white">${uniPrice?.toFixed(2) ?? '-'}</TYPE.white>
-            </RowBetween>
-            <RowBetween>
+            </div>
+            <div className='flex justify-between'>
               <TYPE.white color="white">UNI in circulation:</TYPE.white>
               <TYPE.white color="white">{circulation?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
-            </RowBetween>
-            <RowBetween>
+            </div>
+            <div className='flex justify-between'>
               <TYPE.white color="white">Total Supply</TYPE.white>
               <TYPE.white color="white">{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
-            </RowBetween>
+            </div>
             {uni && uni.chainId === ChainId.MAINNET ? (
               <ExternalLink href={`https://uniswap.info/token/${uni.address}`}>View UNI Analytics</ExternalLink>
             ) : null}

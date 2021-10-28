@@ -1,4 +1,4 @@
-import { ZERO_PERCENT, ONE_HUNDRED_PERCENT } from './../constants/index'
+import { ZERO_PERCENT, ONE_HUNDRED_PERCENT } from '../constants/index'
 import { Trade, Percent, currencyEquals } from '@uniswap/sdk'
 
 // returns whether tradeB is better than tradeA by at least a threshold percentage amount

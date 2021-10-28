@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import Modal from '../Modal'
 import { AutoColumn } from '../Column'
 import styled from 'styled-components'
-import { RowBetween } from '../Row'
 import { TYPE } from '../../theme'
 import { X } from 'react-feather'
 import { ButtonPrimary } from '../Button'
@@ -88,14 +87,14 @@ export default function DelegateModal({ isOpen, onDismiss, title }: VoteModalPro
   }
 
   return (
-    <Modal isOpen={isOpen} onDismiss={wrappedOndismiss} maxHeight={90}>
+    <Modal isOpen={isOpen} onDismiss={wrappedOndismiss}>
       {!attempting && !hash && (
         <ContentWrapper gap="lg">
           <AutoColumn gap="lg" justify="center">
-            <RowBetween>
+            <div className='flex justify-between'>
               <TYPE.mediumHeader fontWeight={500}>{title}</TYPE.mediumHeader>
               <StyledClosed stroke="black" onClick={wrappedOndismiss} />
-            </RowBetween>
+            </div>
             <TYPE.body>Earned UNI tokens represent voting shares in Uniswap governance.</TYPE.body>
             <TYPE.body>
               You can either vote on each proposal yourself or delegate your votes to a third party.

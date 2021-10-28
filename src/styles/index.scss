@@ -1,0 +1,84 @@
+@import './vendor/normalize.css';
+@import './vendor/include-media.scss';
+@import './common.scss';
+
+@import '../components/Modal/index.scss';
+@import '../components/WalletModal/index.scss';
+@import '../components/Web3Status/index.scss';
+@import '../components/SearchModal/CurrencySearch/index.scss';
+@import '../components/SearchModal/CurrencyList/index.scss';
+@import '../components/SearchModal/styles/search-input.scss';
+@import '../components/Button/index.scss';
+@import '../components/Header/index.scss';
+@import '../components/ThemeSwitcher/index.scss';
+@import '../components/NumericalInput/index.scss';
+@import '../components/AppBody/index.scss';
+@import '../components/Toggle/index.scss';
+@import '../components/Settings/index.scss';
+@import '../components/Settings/TransactionSettings/index.scss';
+@import '../components/Settings/InterfaceSettings/index.scss';
+@import '../components/Settings/TransactionSettings/FancyButton/index.scss';
+@import '../components/Popover/Arrow.scss';
+@import '../pages/Swap/index.scss';
+@import '../pages/TokenGetter/index.scss';
+@import '../pages/Pool/index.scss';
+
+* {
+    box-sizing: border-box;
+  }
+
+html {
+    font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: $blue;
+    &:hover {
+        color: $purple;
+    }
+  }
+
+.app {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    overflow-x: hidden;
+    min-height: 100vh;
+    background: $dark;
+    color: $white;
+    &--light {
+        background: $white;
+        color: $dark;
+    }
+    &__header {
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+    &__body {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding-top: 100px;
+        align-items: center;
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 1;
+        @include media('>=small') {
+            padding: 16px;
+            padding-top: 2rem;
+        } 
+    }
+    &__footer {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: auto;
+        padding: 0 24px 8px 24px;
+    }
+}

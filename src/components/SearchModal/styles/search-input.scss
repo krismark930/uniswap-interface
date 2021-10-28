@@ -1,0 +1,27 @@
+.search-input {
+  position: relative;
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  width: 100%;
+  white-space: nowrap;
+  background: $inp-bg-dark;
+  border: 0;
+  outline: none;
+  color: $white;
+  -webkit-appearance: none;
+  font-size: 18px;
+  &--light {
+    color: $dark;
+    background-color: $inp-bg-light;
+    &::placeholder {
+      color: $grey-purple;
+    }
+  }
+  ::placeholder {
+    color: $gray;
+  }
+  :focus {
+    outline: none;
+  }
+}

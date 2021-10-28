@@ -1,67 +1,10 @@
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import React from 'react'
-import styled from 'styled-components'
 import Option from './Option'
 import { SUPPORTED_WALLETS } from '../../constants'
 import { injected } from '../../connectors'
-import { darken } from 'polished'
 import Loader from '../Loader'
-
-const PendingSection = styled.div`
-  ${({ theme }) => theme.flexColumnNoWrap};
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  & > * {
-    width: 100%;
-  }
-`
-
-const StyledLoader = styled(Loader)`
-  margin-right: 1rem;
-`
-
-const LoadingMessage = styled.div<{ error?: boolean }>`
-  ${({ theme }) => theme.flexRowNoWrap};
-  align-items: center;
-  justify-content: flex-start;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  color: ${({ theme, error }) => (error ? theme.red1 : 'inherit')};
-  border: 1px solid ${({ theme, error }) => (error ? theme.red1 : theme.text4)};
-
-  & > * {
-    padding: 1rem;
-  }
-`
-
-const ErrorGroup = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap};
-  align-items: center;
-  justify-content: flex-start;
-`
-
-const ErrorButton = styled.div`
-  border-radius: 8px;
-  font-size: 12px;
-  color: ${({ theme }) => theme.text1};
-  background-color: ${({ theme }) => theme.bg4};
-  margin-left: 1rem;
-  padding: 0.5rem;
-  font-weight: 600;
-  user-select: none;
-
-  &:hover {
-    cursor: pointer;
-    background-color: ${({ theme }) => darken(0.1, theme.text4)};
-  }
-`
-
-const LoadingWrapper = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap};
-  align-items: center;
-  justify-content: center;
-`
+import { ButtonSecondary } from 'components/Button'
 
 export default function PendingView({
   connector,
@@ -77,29 +20,29 @@ export default function PendingView({
   const isMetamask = window?.ethereum?.isMetaMask
 
   return (
-    <PendingSection>
-      <LoadingMessage error={error}>
-        <LoadingWrapper>
+    <>
+      <div className='w-full'>
+        <div className='flex align-center justify-center'>
           {error ? (
-            <ErrorGroup>
-              <div>Error connecting.</div>
-              <ErrorButton
+            <div className='w-full flex items-center justify-between px-5 py-3'>
+              <div className='text-red-400'>Error connecting.</div>
+              <ButtonSecondary className='button--crumpled'
                 onClick={() => {
                   setPendingError(false)
                   connector && tryActivation(connector)
                 }}
               >
                 Try Again
-              </ErrorButton>
-            </ErrorGroup>
+              </ButtonSecondary>
+            </div>
           ) : (
-            <>
-              <StyledLoader />
-              Initializing...
-            </>
+            <div className='py-2 flex align-items'>
+              <Loader className='mr-4' />
+              <span>Initializing...</span>
+            </div>
           )}
-        </LoadingWrapper>
-      </LoadingMessage>
+        </div>
+      </div>
       {Object.keys(SUPPORTED_WALLETS).map(key => {
         const option = SUPPORTED_WALLETS[key]
         if (option.connector === connector) {
@@ -113,10 +56,10 @@ export default function PendingView({
           }
           return (
             <Option
+            name={option.name}
               id={`connect-${key}`}
               key={key}
               clickable={false}
-              color={option.color}
               header={option.name}
               subheader={option.description}
               icon={require('../../assets/images/' + option.iconName)}
@@ -125,6 +68,6 @@ export default function PendingView({
         }
         return null
       })}
-    </PendingSection>
+    </>
   )
 }

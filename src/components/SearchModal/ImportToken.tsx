@@ -4,26 +4,19 @@ import styled from 'styled-components'
 import { TYPE, CloseIcon } from 'theme'
 import Card from 'components/Card'
 import { AutoColumn } from 'components/Column'
-import { RowBetween, RowFixed, AutoRow } from 'components/Row'
+import { RowFixed, AutoRow } from 'components/Row'
 import CurrencyLogo from 'components/CurrencyLogo'
 import { ArrowLeft, AlertTriangle } from 'react-feather'
 import { transparentize } from 'polished'
 import useTheme from 'hooks/useTheme'
 import { ButtonPrimary } from 'components/Button'
-import { SectionBreak } from 'components/swap/styleds'
 import { useAddUserToken } from 'state/user/hooks'
 import { getEtherscanLink } from 'utils'
 import { useActiveWeb3React } from 'hooks'
 import { ExternalLink } from '../../theme/components'
 import { useCombinedInactiveList } from 'state/lists/hooks'
 import ListLogo from 'components/ListLogo'
-import { PaddedColumn, Checkbox } from './styleds'
-
-const Wrapper = styled.div`
-  position: relative;
-  width: 100%;
-  overflow: auto;
-`
+import { Checkbox } from './styleds'
 
 const WarningWrapper = styled(Card)<{ highWarning: boolean }>`
   background-color: ${({ theme, highWarning }) =>
@@ -64,16 +57,15 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
     (chainId && inactiveTokenList?.[chainId]?.[tokens[1]?.address]?.list)
 
   return (
-    <Wrapper>
-      <PaddedColumn gap="14px" style={{ width: '100%', flex: '1 1' }}>
-        <RowBetween>
+    <div className='w-full overflow-auto relative'>
+      <div className='p-5 grid gap-4 auto-rows-auto w-full flex-grow' >
+        <div className='modal-header'>
           {onBack ? <ArrowLeft style={{ cursor: 'pointer' }} onClick={onBack} /> : <div></div>}
           <TYPE.mediumHeader>Import {tokens.length > 1 ? 'Tokens' : 'Token'}</TYPE.mediumHeader>
           {onDismiss ? <CloseIcon onClick={onDismiss} /> : <div></div>}
-        </RowBetween>
-      </PaddedColumn>
-      <SectionBreak />
-      <PaddedColumn gap="md">
+        </div>
+      </div>
+      <div className='p-5 grid gap-4 auto-rows-auto w-full flex-grow'>
         {tokens.map(token => {
           const list = chainId && inactiveTokenList?.[chainId]?.[token.address]?.list
           return (
@@ -158,7 +150,7 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
         >
           Import
         </ButtonPrimary>
-      </PaddedColumn>
-    </Wrapper>
+      </div>
+    </div>
   )
 }

@@ -1,10 +1,7 @@
 import React, { useRef, RefObject, useCallback, useState, useMemo } from 'react'
-import Column from 'components/Column'
-import { PaddedColumn, Separator, SearchInput } from './styleds'
-import Row, { RowBetween, RowFixed } from 'components/Row'
+import {  SearchInput } from './styleds'
 import { TYPE, ExternalLinkIcon, TrashIcon, ButtonText, ExternalLink } from 'theme'
 import { useToken } from 'hooks/Tokens'
-import styled from 'styled-components'
 import { useUserAddedTokens, useRemoveUserAddedToken } from 'state/user/hooks'
 import { Token } from '@uniswap/sdk'
 import CurrencyLogo from 'components/CurrencyLogo'
@@ -15,25 +12,6 @@ import ImportRow from './ImportRow'
 import useTheme from '../../hooks/useTheme'
 
 import { CurrencyModalView } from './CurrencySearchModal'
-
-const Wrapper = styled.div`
-  width: 100%;
-  height: calc(100% - 60px);
-  position: relative;
-  padding-bottom: 60px;
-`
-
-const Footer = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  border-radius: 20px;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  border-top: 1px solid ${({ theme }) => theme.bg3};
-  padding: 20px;
-  text-align: center;
-`
 
 export default function ManageTokens({
   setModalView,
@@ -75,29 +53,29 @@ export default function ManageTokens({
     return (
       chainId &&
       userAddedTokens.map(token => (
-        <RowBetween key={token.address} width="100%">
-          <RowFixed>
+        <div className='flex justify-between w-full' key={token.address}>
+          <div className='flex w-full'>
             <CurrencyLogo currency={token} size={'20px'} />
             <ExternalLink href={getEtherscanLink(chainId, token.address, 'address')}>
               <TYPE.main ml={'10px'} fontWeight={600}>
                 {token.symbol}
               </TYPE.main>
             </ExternalLink>
-          </RowFixed>
-          <RowFixed>
+          </div>
+          <div className='flex w-full'>
             <TrashIcon onClick={() => removeToken(chainId, token.address)} />
             <ExternalLinkIcon href={getEtherscanLink(chainId, token.address, 'address')} />
-          </RowFixed>
-        </RowBetween>
+          </div>
+        </div>
       ))
     )
   }, [userAddedTokens, chainId, removeToken])
 
   return (
-    <Wrapper>
-      <Column style={{ width: '100%', flex: '1 1' }}>
-        <PaddedColumn gap="14px">
-          <Row>
+    <div className='w-full h-full relative pb-10'>
+      <div className='flex flex-col flex-grow flex-shrink w-full'>
+        <div className='p-4 grid gap-3 auto-rows-auto'>
+          <div className='flex'>
             <SearchInput
               type="text"
               id="token-search-input"
@@ -107,7 +85,7 @@ export default function ManageTokens({
               ref={inputRef as RefObject<HTMLInputElement>}
               onChange={handleInput}
             />
-          </Row>
+          </div>
           {searchQuery !== '' && !isAddressSearch && <TYPE.error error={true}>Enter valid token address</TYPE.error>}
           {searchToken && (
             <Card backgroundColor={theme.bg2} padding="10px 0">
@@ -119,10 +97,10 @@ export default function ManageTokens({
               />
             </Card>
           )}
-        </PaddedColumn>
-        <Separator />
-        <PaddedColumn gap="lg">
-          <RowBetween>
+        </div>
+        <div className='w-full h-1px bg-grey-purple' />
+        <div className='p-4 grid gap-3 auto-rows-auto'>
+          <div className='flex justify-between'>
             <TYPE.main fontWeight={600}>
               {userAddedTokens?.length} Custom {userAddedTokens.length === 1 ? 'Token' : 'Tokens'}
             </TYPE.main>
@@ -131,13 +109,13 @@ export default function ManageTokens({
                 <TYPE.blue>Clear all</TYPE.blue>
               </ButtonText>
             )}
-          </RowBetween>
+          </div>
           {tokenList}
-        </PaddedColumn>
-      </Column>
-      <Footer>
+        </div>
+      </div>
+      <div className='absolute bottom-0 w-full p-5 border-t border-grey-purple'>
         <TYPE.darkGray>Tip: Custom tokens are stored locally in your browser</TYPE.darkGray>
-      </Footer>
-    </Wrapper>
+      </div>
+    </div>
   )
 }

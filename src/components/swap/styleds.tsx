@@ -1,7 +1,7 @@
 import { transparentize } from 'polished'
 import React from 'react'
 import { AlertTriangle } from 'react-feather'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Text } from 'rebass'
 import { AutoColumn } from '../Column'
 
@@ -10,19 +10,6 @@ export const Wrapper = styled.div`
   padding: 1rem;
 `
 
-export const ArrowWrapper = styled.div<{ clickable: boolean }>`
-  padding: 2px;
-
-  ${({ clickable }) =>
-    clickable
-      ? css`
-          :hover {
-            cursor: pointer;
-            opacity: 0.8;
-          }
-        `
-      : null}
-`
 
 export const SectionBreak = styled.div`
   height: 1px;
@@ -143,8 +130,8 @@ export const SwapShowAcceptChanges = styled(AutoColumn)`
   background-color: ${({ theme }) => transparentize(0.9, theme.primary1)};
   color: ${({ theme }) => theme.primary1};
   padding: 0.5rem;
-  border-radius: 12px;
   margin-top: 8px;
+  width: 100%;
 `
 export const Separator = styled.div`
   width: 100%;

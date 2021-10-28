@@ -2,7 +2,7 @@ import React from 'react'
 import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 import { TYPE, ExternalLink } from '../../theme'
-import { RowBetween, RowFixed } from '../../components/Row'
+import { RowFixed } from '../../components/Row'
 import { Link } from 'react-router-dom'
 import { ProposalStatus } from './styled'
 import { ButtonPrimary } from '../../components/Button'
@@ -62,13 +62,6 @@ const ProposalTitle = styled.span`
 const VoteCard = styled(DataCard)`
   background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
   overflow: hidden;
-`
-
-const WrapSmall = styled(RowBetween)`
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    flex-wrap: wrap;
-  
-  `};
 `
 
 const TextButton = styled(TYPE.main)`
@@ -135,15 +128,15 @@ export default function Vote() {
           <CardNoise />
           <CardSection>
             <AutoColumn gap="md">
-              <RowBetween>
+              <div className='flex justify-between'>
                 <TYPE.white fontWeight={600}>Uniswap Governance</TYPE.white>
-              </RowBetween>
-              <RowBetween>
+              </div>
+              <div className='flex justify-between'>
                 <TYPE.white fontSize={14}>
                   UNI tokens represent voting shares in Uniswap governance. You can vote on each proposal yourself or
                   delegate your votes to a third party.
                 </TYPE.white>
-              </RowBetween>
+              </div>
               <ExternalLink
                 style={{ color: 'white', textDecoration: 'underline' }}
                 href="https://uniswap.org/blog/uni"
@@ -158,7 +151,7 @@ export default function Vote() {
         </VoteCard>
       </TopSection>
       <TopSection gap="2px">
-        <WrapSmall>
+        <div className='flex justify-between sm:flex-wrap'>
           <TYPE.mediumHeader style={{ margin: '0.5rem 0.5rem 0.5rem 0', flexShrink: 0 }}>Proposals</TYPE.mediumHeader>
           {(!allProposals || allProposals.length === 0) && !availableVotes && <Loader />}
           {showUnlockVoting ? (
@@ -184,9 +177,9 @@ export default function Vote() {
           ) : (
             ''
           )}
-        </WrapSmall>
+        </div>
         {!showUnlockVoting && (
-          <RowBetween>
+          <div className='flex justify-between'>
             <div />
             {userDelegatee && userDelegatee !== ZERO_ADDRESS ? (
               <RowFixed>
@@ -208,7 +201,7 @@ export default function Vote() {
             ) : (
               ''
             )}
-          </RowBetween>
+          </div>
         )}
         {allProposals?.length === 0 && (
           <EmptyProposals>

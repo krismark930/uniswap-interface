@@ -4,7 +4,6 @@ import { useActiveWeb3React } from '../../hooks'
 import Modal from '../Modal'
 import { AutoColumn, ColumnCenter } from '../Column'
 import styled, { ThemeContext } from 'styled-components'
-import { RowBetween } from '../Row'
 import { TYPE, CustomLightSpinner } from '../../theme'
 import { X, ArrowUpCircle } from 'react-feather'
 import { ButtonPrimary } from '../Button'
@@ -82,16 +81,16 @@ export default function VoteModal({ isOpen, onDismiss, proposalId, support }: Vo
   }
 
   return (
-    <Modal isOpen={isOpen} onDismiss={wrappedOndismiss} maxHeight={90}>
+    <Modal isOpen={isOpen} onDismiss={wrappedOndismiss}>
       {!attempting && !hash && (
         <ContentWrapper gap="lg">
           <AutoColumn gap="lg" justify="center">
-            <RowBetween>
+            <div className='flex justify-between'>
               <TYPE.mediumHeader fontWeight={500}>{`Vote ${
                 support ? 'for ' : 'against'
               } proposal ${proposalId}`}</TYPE.mediumHeader>
               <StyledClosed stroke="black" onClick={wrappedOndismiss} />
-            </RowBetween>
+            </div>
             <TYPE.largeHeader>{availableVotes?.toSignificant(4)} Votes</TYPE.largeHeader>
             <ButtonPrimary onClick={onVote}>
               <TYPE.mediumHeader color="white">{`Vote ${
@@ -103,10 +102,10 @@ export default function VoteModal({ isOpen, onDismiss, proposalId, support }: Vo
       )}
       {attempting && !hash && (
         <ConfirmOrLoadingWrapper>
-          <RowBetween>
+          <div className='flex justify-between'>
             <div />
             <StyledClosed onClick={wrappedOndismiss} />
-          </RowBetween>
+          </div>
           <ConfirmedIcon>
             <CustomLightSpinner src={Circle} alt="loader" size={'90px'} />
           </ConfirmedIcon>
@@ -120,10 +119,10 @@ export default function VoteModal({ isOpen, onDismiss, proposalId, support }: Vo
       )}
       {hash && (
         <ConfirmOrLoadingWrapper>
-          <RowBetween>
+          <div className='flex justify-between'>
             <div />
             <StyledClosed onClick={wrappedOndismiss} />
-          </RowBetween>
+          </div>
           <ConfirmedIcon>
             <ArrowUpCircle strokeWidth={0.5} size={90} color={theme.primary1} />
           </ConfirmedIcon>

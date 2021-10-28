@@ -1,18 +1,16 @@
 import React, { useState, useCallback } from 'react'
-import styled from 'styled-components'
 import ReactGA from 'react-ga'
 import { TYPE, CloseIcon } from 'theme'
 import Card from 'components/Card'
 import { AutoColumn } from 'components/Column'
-import { RowBetween, RowFixed, AutoRow } from 'components/Row'
+import { RowFixed, AutoRow } from 'components/Row'
 import { ArrowLeft, AlertTriangle } from 'react-feather'
 import useTheme from 'hooks/useTheme'
 import { transparentize } from 'polished'
 import { ButtonPrimary } from 'components/Button'
-import { SectionBreak } from 'components/swap/styleds'
 import { ExternalLink } from '../../theme/components'
 import ListLogo from 'components/ListLogo'
-import { PaddedColumn, Checkbox, TextDot } from './styleds'
+import { Checkbox, TextDot } from './styleds'
 import { TokenList } from '@uniswap/token-lists'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from 'state'
@@ -20,12 +18,6 @@ import { useFetchListCallback } from 'hooks/useFetchListCallback'
 import { removeList, enableList } from 'state/lists/actions'
 import { CurrencyModalView } from './CurrencySearchModal'
 import { useAllLists } from 'state/lists/hooks'
-
-const Wrapper = styled.div`
-  position: relative;
-  width: 100%;
-  overflow: auto;
-`
 
 interface ImportProps {
   listURL: string
@@ -76,19 +68,16 @@ export function ImportList({ listURL, list, setModalView, onDismiss }: ImportPro
   }, [adding, dispatch, fetchList, listURL, setModalView])
 
   return (
-    <Wrapper>
-      <PaddedColumn gap="14px" style={{ width: '100%', flex: '1 1' }}>
-        <RowBetween>
+    <div className='w-full overflow-auto relative'>
+        <div className='modal-header'>
           <ArrowLeft style={{ cursor: 'pointer' }} onClick={() => setModalView(CurrencyModalView.manage)} />
           <TYPE.mediumHeader>Import List</TYPE.mediumHeader>
           <CloseIcon onClick={onDismiss} />
-        </RowBetween>
-      </PaddedColumn>
-      <SectionBreak />
-      <PaddedColumn gap="md">
-        <AutoColumn gap="md">
+        </div>
+      <div className='p-5 grid gap-4 auto-rows-auto'>
+        <div className='grid gap-4 auto-rows-auto' >
           <Card backgroundColor={theme.bg2} padding="12px 20px">
-            <RowBetween>
+            <div className='flex justify-between'>
               <RowFixed>
                 {list.logoURI && <ListLogo logoURI={list.logoURI} size="40px" />}
                 <AutoColumn gap="sm" style={{ marginLeft: '20px' }}>
@@ -108,7 +97,7 @@ export function ImportList({ listURL, list, setModalView, onDismiss }: ImportPro
                   </ExternalLink>
                 </AutoColumn>
               </RowFixed>
-            </RowBetween>
+            </div>
           </Card>
           <Card style={{ backgroundColor: transparentize(0.8, theme.red1) }}>
             <AutoColumn justify="center" style={{ textAlign: 'center', gap: '16px', marginBottom: '12px' }}>
@@ -155,9 +144,8 @@ export function ImportList({ listURL, list, setModalView, onDismiss }: ImportPro
               {addError}
             </TYPE.error>
           ) : null}
-        </AutoColumn>
-        {/* </Card> */}
-      </PaddedColumn>
-    </Wrapper>
+        </div>
+      </div>
+    </div>
   )
 }

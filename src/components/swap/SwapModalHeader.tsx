@@ -9,8 +9,7 @@ import { ButtonPrimary } from '../Button'
 import { isAddress, shortenAddress } from '../../utils'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import { AutoColumn } from '../Column'
-import CurrencyLogo from '../CurrencyLogo'
-import { RowBetween, RowFixed } from '../Row'
+import { RowFixed } from '../Row'
 import { TruncatedText, SwapShowAcceptChanges } from './styleds'
 
 export default function SwapModalHeader({
@@ -36,10 +35,9 @@ export default function SwapModalHeader({
   const theme = useContext(ThemeContext)
 
   return (
-    <AutoColumn gap={'md'} style={{ marginTop: '20px' }}>
-      <RowBetween align="flex-end">
+    <div className='w-full flex flex-col'> 
+      <div className='w-full flex justify-between items-end mb-4'>
         <RowFixed gap={'0px'}>
-          <CurrencyLogo currency={trade.inputAmount.currency} size={'24px'} style={{ marginRight: '12px' }} />
           <TruncatedText
             fontSize={24}
             fontWeight={500}
@@ -53,13 +51,12 @@ export default function SwapModalHeader({
             {trade.inputAmount.currency.symbol}
           </Text>
         </RowFixed>
-      </RowBetween>
+      </div>
       <RowFixed>
         <ArrowDown size="16" color={theme.text2} style={{ marginLeft: '4px', minWidth: '16px' }} />
       </RowFixed>
-      <RowBetween align="flex-end">
+      <div className='w-full flex justify-between items-end my-4'>
         <RowFixed gap={'0px'}>
-          <CurrencyLogo currency={trade.outputAmount.currency} size={'24px'} style={{ marginRight: '12px' }} />
           <TruncatedText
             fontSize={24}
             fontWeight={500}
@@ -79,21 +76,20 @@ export default function SwapModalHeader({
             {trade.outputAmount.currency.symbol}
           </Text>
         </RowFixed>
-      </RowBetween>
+      </div>
       {showAcceptChanges ? (
         <SwapShowAcceptChanges justify="flex-start" gap={'0px'}>
-          <RowBetween>
+          <div className='flex justify-between w-full'>
             <RowFixed>
               <AlertTriangle size={20} style={{ marginRight: '8px', minWidth: 24 }} />
               <TYPE.main color={theme.primary1}> Price Updated</TYPE.main>
             </RowFixed>
             <ButtonPrimary
-              style={{ padding: '.5rem', width: 'fit-content', fontSize: '0.825rem', borderRadius: '12px' }}
               onClick={onAcceptChanges}
             >
               Accept
             </ButtonPrimary>
-          </RowBetween>
+          </div>
         </SwapShowAcceptChanges>
       ) : null}
       <AutoColumn justify="flex-start" gap="sm" style={{ padding: '12px 0 0 0px' }}>
@@ -123,6 +119,6 @@ export default function SwapModalHeader({
           </TYPE.main>
         </AutoColumn>
       ) : null}
-    </AutoColumn>
+    </div>
   )
 }

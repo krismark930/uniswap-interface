@@ -1,0 +1,37 @@
+.m-connect-option {
+  width: 100%;
+  &__row {
+    display: flex;
+    align-items: center;
+  }
+  &__icon {
+    img {
+      max-width: 48px;
+    }
+  }
+  &__col {
+    padding: 1.5rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  &__name {
+    font-size: 24px; 
+    text-transform: uppercase;
+    padding-left: 12px;
+    @extend %title;
+  }
+  &__policy {
+    font-size: 13px;
+    margin-bottom: 12px;
+    color: $grey-purple;
+    line-height: 1.7;
+  }
+  &__submit {
+    width: 100%;
+  }
+  &__subheader {
+    margin-bottom: 12px;
+    color: $grey-purple;
+    font-size: 13px;
+  }
+}

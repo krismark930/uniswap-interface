@@ -15,7 +15,7 @@ export default function TokenWarningModal({
   onDismiss: () => void
 }) {
   return (
-    <Modal isOpen={isOpen} onDismiss={onDismiss} maxHeight={100}>
+    <Modal isOpen={isOpen} onDismiss={onDismiss}>
       <ImportToken tokens={tokens} handleCurrencySelect={onConfirm} />
     </Modal>
   )
