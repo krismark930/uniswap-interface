@@ -17,8 +17,10 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
   const { chainId } = useActiveWeb3React()
   const userAddedTokens = useUserAddedTokens()
 
+  // console.log(tokenMap)
+
   return useMemo(() => {
-    if (!chainId) return {}
+    if (!chainId || !tokenMap[chainId]) return {}
 
     // reduce to just tokens
     const mapWithoutUrls = Object.keys(tokenMap[chainId]).reduce<{ [address: string]: Token }>((newMap, address) => {

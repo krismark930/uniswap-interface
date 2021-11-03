@@ -3,7 +3,6 @@ import Modal from '../Modal'
 import { AutoColumn, ColumnCenter } from '../Column'
 import styled from 'styled-components'
 import { DataCard, CardSection, Break } from '../earn/styled'
-import { RowBetween } from '../Row'
 import { TYPE, ExternalLink, CloseIcon, CustomLightSpinner, UniTokenAnimated } from '../../theme'
 import { ButtonPrimary } from '../Button'
 import { useClaimCallback, useUserUnclaimedAmount, useUserHasAvailableClaim } from '../../state/claim/hooks'
@@ -93,7 +92,7 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
   }
 
   return (
-    <Modal isOpen={isOpen} onDismiss={wrappedOnDismiss} maxHeight={90}>
+    <Modal isOpen={isOpen} onDismiss={wrappedOnDismiss}>
       <Confetti start={Boolean(isOpen && claimConfirmed && attempting)} />
       {!attempting && (
         <ContentWrapper gap="lg">
@@ -101,10 +100,10 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
             <CardBGImage />
             <CardNoise />
             <CardSection gap="md">
-              <RowBetween>
+              <div className='flex justify-between'>
                 <TYPE.white fontWeight={500}>Claim UNI Token</TYPE.white>
                 <CloseIcon onClick={wrappedOnDismiss} style={{ zIndex: 99 }} stroke="white" />
-              </RowBetween>
+              </div>
               <TYPE.white fontWeight={700} fontSize={36}>
                 {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} UNI
               </TYPE.white>
@@ -137,10 +136,10 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
         <ConfirmOrLoadingWrapper activeBG={true}>
           <CardNoise />
           <CardBGImageSmaller desaturate />
-          <RowBetween>
+          <div className='flex justify-between'>
             <div />
             <CloseIcon onClick={wrappedOnDismiss} style={{ zIndex: 99 }} stroke="black" />
-          </RowBetween>
+          </div>
           <ConfirmedIcon>
             {!claimConfirmed ? (
               <CustomLightSpinner src={Circle} alt="loader" size={'90px'} />

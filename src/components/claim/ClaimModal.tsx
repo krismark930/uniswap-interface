@@ -18,7 +18,6 @@ import Confetti from '../Confetti'
 import { Break, CardBGImage, CardBGImageSmaller, CardNoise, CardSection, DataCard } from '../earn/styled'
 
 import Modal from '../Modal'
-import { RowBetween } from '../Row'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -89,7 +88,7 @@ export default function ClaimModal() {
   )
 
   return (
-    <Modal isOpen={isOpen} onDismiss={toggleClaimModal} maxHeight={90}>
+    <Modal isOpen={isOpen} onDismiss={toggleClaimModal}>
       <Confetti start={Boolean(isOpen && claimConfirmed)} />
       {!attempting && !claimConfirmed && (
         <ContentWrapper gap="lg">
@@ -97,10 +96,10 @@ export default function ClaimModal() {
             <CardBGImage />
             <CardNoise />
             <CardSection gap="md">
-              <RowBetween>
+              <div className='flex justify-between'>
                 <TYPE.white fontWeight={500}>Claim UNI</TYPE.white>
                 <CloseIcon onClick={toggleClaimModal} style={{ zIndex: 99 }} color="white" />
-              </RowBetween>
+              </div>
               <TYPE.white fontWeight={700} fontSize={36}>
                 {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} UNI
               </TYPE.white>
@@ -108,15 +107,15 @@ export default function ClaimModal() {
             <Break />
             <CardSection gap="sm">
               {userClaimData?.flags?.isSOCKS && (
-                <RowBetween>
+                <div className='flex justify-between'>
                   <TYPE.subHeader color="white">SOCKS</TYPE.subHeader>
                   <TYPE.subHeader color="white">{SOCKS_AMOUNT} UNI</TYPE.subHeader>
-                </RowBetween>
+                </div>
               )}
               {userClaimData?.flags?.isLP &&
                 unclaimedAmount &&
                 JSBI.greaterThanOrEqual(unclaimedAmount.raw, nonLPAmount) && (
-                  <RowBetween>
+                  <div className='flex justify-between'>
                     <TYPE.subHeader color="white">Liquidity</TYPE.subHeader>
                     <TYPE.subHeader color="white">
                       {unclaimedAmount
@@ -124,13 +123,13 @@ export default function ClaimModal() {
                         .toFixed(0, { groupSeparator: ',' })}{' '}
                       UNI
                     </TYPE.subHeader>
-                  </RowBetween>
+                  </div>
                 )}
               {userClaimData?.flags?.isUser && (
-                <RowBetween>
+                <div className='flex justify-between'>
                   <TYPE.subHeader color="white">User</TYPE.subHeader>
                   <TYPE.subHeader color="white">{USER_AMOUNT} UNI</TYPE.subHeader>
-                </RowBetween>
+                </div>
               )}
             </CardSection>
           </ModalUpper>
@@ -156,10 +155,10 @@ export default function ClaimModal() {
         <ConfirmOrLoadingWrapper activeBG={true}>
           <CardNoise />
           <CardBGImageSmaller desaturate />
-          <RowBetween>
+          <div className='flex justify-between'>
             <div />
             <CloseIcon onClick={toggleClaimModal} style={{ zIndex: 99 }} stroke="black" />
-          </RowBetween>
+          </div>
           <ConfirmedIcon>
             {!claimConfirmed ? (
               <CustomLightSpinner src={Circle} alt="loader" size={'90px'} />

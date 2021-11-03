@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { PaddedColumn, Separator } from './styleds'
-import { RowBetween } from 'components/Row'
 import { ArrowLeft } from 'react-feather'
 import { Text } from 'rebass'
 import { CloseIcon } from 'theme'
@@ -10,18 +8,6 @@ import { ManageLists } from './ManageLists'
 import ManageTokens from './ManageTokens'
 import { TokenList } from '@uniswap/token-lists'
 import { CurrencyModalView } from './CurrencySearchModal'
-
-const Wrapper = styled.div`
-  width: 100%;
-  position: relative;
-  padding-bottom: 80px;
-`
-
-const ToggleWrapper = styled(RowBetween)`
-  background-color: ${({ theme }) => theme.bg3};
-  border-radius: 12px;
-  padding: 6px;
-`
 
 const ToggleOption = styled.div<{ active?: boolean }>`
   width: 48%;
@@ -58,32 +44,31 @@ export default function Manage({
   const [showLists, setShowLists] = useState(true)
 
   return (
-    <Wrapper>
-      <PaddedColumn>
-        <RowBetween>
+    <div className='w-full relative pb-8'>
+      <div className='p-5 grid gap-4 auto-rows-auto'>
+        <div className='modal-header'>
           <ArrowLeft style={{ cursor: 'pointer' }} onClick={() => setModalView(CurrencyModalView.search)} />
           <Text fontWeight={500} fontSize={20}>
             Manage
           </Text>
           <CloseIcon onClick={onDismiss} />
-        </RowBetween>
-      </PaddedColumn>
-      <Separator />
-      <PaddedColumn style={{ paddingBottom: 0 }}>
-        <ToggleWrapper>
+        </div>
+      </div>
+      <div className='pt-5 pb-0 px-5 grid gap-4 auto-rows-auto'>
+        <div className='flex justify-between p-1 bg-inp-dark'>
           <ToggleOption onClick={() => setShowLists(!showLists)} active={showLists}>
             Lists
           </ToggleOption>
           <ToggleOption onClick={() => setShowLists(!showLists)} active={!showLists}>
             Tokens
           </ToggleOption>
-        </ToggleWrapper>
-      </PaddedColumn>
+        </div>
+      </div>
       {showLists ? (
         <ManageLists setModalView={setModalView} setImportList={setImportList} setListUrl={setListUrl} />
       ) : (
         <ManageTokens setModalView={setModalView} setImportToken={setImportToken} />
       )}
-    </Wrapper>
+    </div>
   )
 }

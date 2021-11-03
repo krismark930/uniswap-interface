@@ -3,7 +3,6 @@ import { useActiveWeb3React } from '../../hooks'
 
 import { AutoColumn, ColumnCenter } from '../Column'
 import styled, { ThemeContext } from 'styled-components'
-import { RowBetween } from '../Row'
 import { TYPE, CloseIcon, CustomLightSpinner } from '../../theme'
 import { ArrowUpCircle } from 'react-feather'
 
@@ -23,10 +22,10 @@ const ConfirmedIcon = styled(ColumnCenter)`
 export function LoadingView({ children, onDismiss }: { children: any; onDismiss: () => void }) {
   return (
     <ConfirmOrLoadingWrapper>
-      <RowBetween>
+      <div className='flex justify-between'>
         <div />
         <CloseIcon onClick={onDismiss} />
-      </RowBetween>
+      </div>
       <ConfirmedIcon>
         <CustomLightSpinner src={Circle} alt="loader" size={'90px'} />
       </ConfirmedIcon>
@@ -52,10 +51,10 @@ export function SubmittedView({
 
   return (
     <ConfirmOrLoadingWrapper>
-      <RowBetween>
+      <div className='flex justify-between'>
         <div />
         <CloseIcon onClick={onDismiss} />
-      </RowBetween>
+      </div>
       <ConfirmedIcon>
         <ArrowUpCircle strokeWidth={0.5} size={90} color={theme.primary1} />
       </ConfirmedIcon>

@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { STAKING_REWARDS_INFO, useStakingInfo } from '../../state/stake/hooks'
 import { TYPE, ExternalLink } from '../../theme'
 import PoolCard from '../../components/earn/PoolCard'
-import { RowBetween } from '../../components/Row'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import { Countdown } from './Countdown'
 import Loader from '../../components/Loader'
@@ -32,12 +31,6 @@ const PoolSection = styled.div`
   justify-self: center;
 `
 
-const DataRow = styled(RowBetween)`
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-flex-direction: column;
-`};
-`
-
 export default function Earn() {
   const { chainId } = useActiveWeb3React()
 
@@ -61,14 +54,14 @@ export default function Earn() {
           <CardNoise />
           <CardSection>
             <AutoColumn gap="md">
-              <RowBetween>
+              <div className='flex justify-between'>
                 <TYPE.white fontWeight={600}>Uniswap liquidity mining</TYPE.white>
-              </RowBetween>
-              <RowBetween>
+              </div>
+              <div className='flex justify-between'>
                 <TYPE.white fontSize={14}>
                   Deposit your Liquidity Provider tokens to receive UNI, the Uniswap protocol governance token.
                 </TYPE.white>
-              </RowBetween>{' '}
+              </div>{' '}
               <ExternalLink
                 style={{ color: 'white', textDecoration: 'underline' }}
                 href="https://uniswap.org/blog/uni/"
@@ -84,10 +77,10 @@ export default function Earn() {
       </TopSection>
 
       <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
-        <DataRow style={{ alignItems: 'baseline' }}>
+        <div className='flex justify-between items-baseline sm:flex-col' style={{ alignItems: 'baseline' }}>
           <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating pools</TYPE.mediumHeader>
           <Countdown exactEnd={stakingInfos?.[0]?.periodFinish} />
-        </DataRow>
+        </div>
 
         <PoolSection>
           {stakingRewardsExist && stakingInfos?.length === 0 ? (

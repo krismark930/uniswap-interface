@@ -5,12 +5,10 @@ import { Link } from 'react-router-dom'
 
 import { JSBI, TokenAmount, ETHER } from '@uniswap/sdk'
 import { RouteComponentProps } from 'react-router-dom'
-import DoubleCurrencyLogo from '../../components/DoubleLogo'
 import { useCurrency } from '../../hooks/Tokens'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import { TYPE } from '../../theme'
 
-import { RowBetween } from '../../components/Row'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import { ButtonPrimary, ButtonEmpty } from '../../components/Button'
 import StakingModal from '../../components/earn/StakingModal'
@@ -77,15 +75,6 @@ const VoteCard = styled(DataCard)`
   overflow: hidden;
 `
 
-const DataRow = styled(RowBetween)`
-  justify-content: center;
-  gap: 12px;
-
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    flex-direction: column;
-    gap: 12px;
-  `};
-`
 
 export default function Manage({
   match: {
@@ -155,14 +144,13 @@ export default function Manage({
 
   return (
     <PageWrapper gap="lg" justify="center">
-      <RowBetween style={{ gap: '24px' }}>
+      <div className='flex justify-between'>
         <TYPE.mediumHeader style={{ margin: 0 }}>
           {currencyA?.symbol}-{currencyB?.symbol} Liquidity Mining
         </TYPE.mediumHeader>
-        <DoubleCurrencyLogo currency0={currencyA ?? undefined} currency1={currencyB ?? undefined} size={24} />
-      </RowBetween>
+      </div>
 
-      <DataRow style={{ gap: '24px' }}>
+      <div className='flex justify-center'>
         <PoolData>
           <AutoColumn gap="sm">
             <TYPE.body style={{ margin: 0 }}>Total deposits</TYPE.body>
@@ -186,7 +174,7 @@ export default function Manage({
             </TYPE.body>
           </AutoColumn>
         </PoolData>
-      </DataRow>
+      </div>
 
       {showAddLiquidityButton && (
         <VoteCard>
@@ -194,14 +182,14 @@ export default function Manage({
           <CardNoise />
           <CardSection>
             <AutoColumn gap="md">
-              <RowBetween>
+              <div className='flex justify-between'>
                 <TYPE.white fontWeight={600}>Step 1. Get UNI-V2 Liquidity tokens</TYPE.white>
-              </RowBetween>
-              <RowBetween style={{ marginBottom: '1rem' }}>
+              </div>
+              <div className='flex justify-between mb-4'>
                 <TYPE.white fontSize={14}>
                   {`UNI-V2 LP tokens are required. Once you've added liquidity to the ${currencyA?.symbol}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
                 </TYPE.white>
-              </RowBetween>
+              </div>
               <ButtonPrimary
                 padding="8px"
                 borderRadius="8px"
@@ -246,17 +234,17 @@ export default function Manage({
               <CardBGImage desaturate />
               <CardNoise />
               <AutoColumn gap="md">
-                <RowBetween>
+                <div className='flex justify-between'>
                   <TYPE.white fontWeight={600}>Your liquidity deposits</TYPE.white>
-                </RowBetween>
-                <RowBetween style={{ alignItems: 'baseline' }}>
+                </div>
+                <div className='flex justify-between items-baseline'>
                   <TYPE.white fontSize={36} fontWeight={600}>
                     {stakingInfo?.stakedAmount?.toSignificant(6) ?? '-'}
                   </TYPE.white>
                   <TYPE.white>
                     UNI-V2 {currencyA?.symbol}-{currencyB?.symbol}
                   </TYPE.white>
-                </RowBetween>
+                </div>
               </AutoColumn>
             </CardSection>
           </StyledDataCard>
@@ -264,7 +252,7 @@ export default function Manage({
             <CardBGImage desaturate />
             <CardNoise />
             <AutoColumn gap="sm">
-              <RowBetween>
+              <div className='flex justify-between'>
                 <div>
                   <TYPE.black>Your unclaimed UNI</TYPE.black>
                 </div>
@@ -278,8 +266,8 @@ export default function Manage({
                     Claim
                   </ButtonEmpty>
                 )}
-              </RowBetween>
-              <RowBetween style={{ alignItems: 'baseline' }}>
+              </div>
+              <div className='flex justify-between items-baseline'>
                 <TYPE.largeHeader fontSize={36} fontWeight={600}>
                   <CountUp
                     key={countUpAmount}
@@ -302,7 +290,7 @@ export default function Manage({
                     : '0'}
                   {' UNI / week'}
                 </TYPE.black>
-              </RowBetween>
+              </div>
             </AutoColumn>
           </StyledBottomCard>
         </BottomSection>
@@ -314,7 +302,7 @@ export default function Manage({
         </TYPE.main>
 
         {!showAddLiquidityButton && (
-          <DataRow style={{ marginBottom: '1rem' }}>
+          <div className='flex justify-center mb-4'>
             {stakingInfo && stakingInfo.active && (
               <ButtonPrimary padding="8px" borderRadius="8px" width="160px" onClick={handleDepositClick}>
                 {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? 'Deposit' : 'Deposit UNI-V2 LP Tokens'}
@@ -333,7 +321,7 @@ export default function Manage({
                 </ButtonPrimary>
               </>
             )}
-          </DataRow>
+          </div>
         )}
         {!userLiquidityUnstaked ? null : userLiquidityUnstaked.equalTo('0') ? null : !stakingInfo?.active ? null : (
           <TYPE.main>{userLiquidityUnstaked.toSignificant(6)} UNI-V2 LP tokens available</TYPE.main>

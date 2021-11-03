@@ -1,14 +1,10 @@
 import React from 'react'
 import { AutoColumn } from '../Column'
-import { RowBetween } from '../Row'
 import styled from 'styled-components'
-import { TYPE, StyledInternalLink } from '../../theme'
-import DoubleCurrencyLogo from '../DoubleLogo'
+import { TYPE } from '../../theme'
 import { ETHER, JSBI, TokenAmount } from '@uniswap/sdk'
-import { ButtonPrimary } from '../Button'
 import { StakingInfo } from '../../state/stake/hooks'
 import { useColor } from '../../hooks/useColor'
-import { currencyId } from '../../utils/currencyId'
 import { Break, CardNoise, CardBGImage } from './styled'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
 import { useTotalSupply } from '../../data/TotalSupply'
@@ -112,28 +108,21 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
       <CardNoise />
 
       <TopSection>
-        <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={24} />
         <TYPE.white fontWeight={600} fontSize={24} style={{ marginLeft: '8px' }}>
           {currency0.symbol}-{currency1.symbol}
         </TYPE.white>
-
-        <StyledInternalLink to={`/uni/${currencyId(currency0)}/${currencyId(currency1)}`} style={{ width: '100%' }}>
-          <ButtonPrimary padding="8px" borderRadius="8px">
-            {isStaking ? 'Manage' : 'Deposit'}
-          </ButtonPrimary>
-        </StyledInternalLink>
       </TopSection>
 
       <StatContainer>
-        <RowBetween>
+        <div className='flex justify-between'>
           <TYPE.white> Total deposited</TYPE.white>
           <TYPE.white>
             {valueOfTotalStakedAmountInUSDC
               ? `$${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
               : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ETH`}
           </TYPE.white>
-        </RowBetween>
-        <RowBetween>
+        </div>
+        <div className='flex justify-between'>
           <TYPE.white> Pool rate </TYPE.white>
           <TYPE.white>
             {stakingInfo
@@ -144,7 +133,7 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
                 : '0 UNI / week'
               : '-'}
           </TYPE.white>
-        </RowBetween>
+        </div>
       </StatContainer>
 
       {isStaking && (

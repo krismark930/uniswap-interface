@@ -1,4 +1,4 @@
-import { UNI } from './../../constants/index'
+import { UNI } from '../../constants/index'
 import { TokenAmount, JSBI, ChainId } from '@uniswap/sdk'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useEffect, useState } from 'react'

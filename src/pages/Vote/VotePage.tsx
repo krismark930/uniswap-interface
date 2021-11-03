@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { RouteComponentProps } from 'react-router-dom'
 import { TYPE, StyledInternalLink, ExternalLink } from '../../theme'
-import { RowFixed, RowBetween } from '../../components/Row'
+import { RowFixed } from '../../components/Row'
 import { CardSection, DataCard } from '../../components/earn/styled'
 import { ArrowLeft } from 'react-feather'
 import { ButtonPrimary } from '../../components/Button'
@@ -86,13 +86,6 @@ const Progress = styled.div<{ status: 'for' | 'against'; percentageString?: stri
 const MarkDownWrapper = styled.div`
   max-width: 640px;
   overflow: hidden;
-`
-
-const WrapSmall = styled(RowBetween)`
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    align-items: flex-start;
-    flex-direction: column;
-  `};
 `
 
 const DetailText = styled.div`
@@ -177,15 +170,15 @@ export default function VotePage({
       <VoteModal isOpen={showVoteModal} onDismiss={toggleVoteModal} proposalId={proposalData?.id} support={support} />
       <DelegateModal isOpen={showDelegateModal} onDismiss={toggleDelegateModal} title="Unlock Votes" />
       <ProposalInfo gap="lg" justify="start">
-        <RowBetween style={{ width: '100%' }}>
+        <div className='flex justify-between w-full'>
           <ArrowWrapper to="/vote">
             <ArrowLeft size={20} /> All Proposals
           </ArrowWrapper>
           {proposalData && <ProposalStatus status={proposalData?.status ?? ''}>{proposalData?.status}</ProposalStatus>}
-        </RowBetween>
+        </div>
         <AutoColumn gap="10px" style={{ width: '100%' }}>
           <TYPE.largeHeader style={{ marginBottom: '.5rem' }}>{proposalData?.title}</TYPE.largeHeader>
-          <RowBetween>
+          <div className='flex justify-between'>
             <TYPE.main>
               {endDate && endDate < now
                 ? 'Voting ended ' + (endDate && endDate.toLocaleString(DateTime.DATETIME_FULL))
@@ -193,7 +186,7 @@ export default function VotePage({
                 ? 'Voting ends approximately ' + (endDate && endDate.toLocaleString(DateTime.DATETIME_FULL))
                 : ''}
             </TYPE.main>
-          </RowBetween>
+          </div>
           {proposalData && proposalData.status === 'active' && !showVotingButtons && (
             <GreyCard>
               <TYPE.black>
@@ -238,13 +231,13 @@ export default function VotePage({
           <StyledDataCard>
             <CardSection>
               <AutoColumn gap="md">
-                <WrapSmall>
+                <div className='flex justify-between sm:flex-col sm:items-start'>
                   <TYPE.black fontWeight={600}>For</TYPE.black>
                   <TYPE.black fontWeight={600}>
                     {' '}
                     {proposalData?.forCount.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                   </TYPE.black>
-                </WrapSmall>
+                </div>
               </AutoColumn>
               <ProgressWrapper>
                 <Progress status={'for'} percentageString={forPercentage} />
@@ -254,12 +247,12 @@ export default function VotePage({
           <StyledDataCard>
             <CardSection>
               <AutoColumn gap="md">
-                <WrapSmall>
+                <div className='flex justify-between sm:flex-col sm:items-start'>
                   <TYPE.black fontWeight={600}>Against</TYPE.black>
                   <TYPE.black fontWeight={600}>
                     {proposalData?.againstCount.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                   </TYPE.black>
-                </WrapSmall>
+                </div>
               </AutoColumn>
               <ProgressWrapper>
                 <Progress status={'against'} percentageString={againstPercentage} />

@@ -1,0 +1,178 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 44px;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    justify-content: center;
+    overflow: hidden;
+    white-space: nowrap;
+    $parent: &;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    @extend %title;
+    transition: all 0.2s ease-in-out;
+    $parent: &;
+    &[disabled] {
+        pointer-events: none;
+        opacity: 0.8;
+        filter: grayscale(1)
+    }
+    &--light {
+        background-color: $white;
+        border: 1px solid $white;
+        color: $dark;
+    }
+    &--theme-light {
+        &#{$parent}--empty {
+            color: $dark;
+        }
+        &#{$parent}--light {
+            color: $white;
+            background-color: $dark;
+            border: 1px solid $dark;
+            &:before {
+                border-bottom: 15px solid $white;
+            }
+            &:after {
+                border-top: 15px solid $white;
+            }
+        }
+        &#{$parent}--primary {
+            &:before {
+                border-bottom: 15px solid $white;
+            }
+            &:after {
+                border-top: 15px solid $white;
+            }
+        }
+        &#{$parent}--transparent {
+            color: $dark;
+            border: 1px solid $dark;
+            &:before,
+            &:after {
+                background-color: $dark;
+            }
+        }
+    }
+    &--empty {
+        border: 0;
+        background-color: transparent;
+        color: $white;
+        padding-left: 0;
+        padding-right: 0;
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
+    &--gray {
+        border: 1px solid $gray;
+        background-color: $gray;
+        color: $purple;
+    }
+    &--primary {
+        color: $white;
+        border: 1px solid $blue;
+        background-color: $blue;
+        &:hover {
+            filter: drop-shadow(0 0 5px $blue);
+        }
+        &:before {
+            border-bottom: 15px solid $dark;
+        }
+        &:after {
+            border-top: 15px solid $dark;
+        }
+    }
+    &--crumpled {
+        padding: 8px 23px;
+        font-size: 16px;
+        @include media(">=xSmall", "<medium") {
+            padding: 8px 16px;
+        }
+    }
+    &--big {
+        padding: 14px 46px;
+        min-width: 300px;
+    }
+    &--gradient-light {
+        border: 1px solid;
+        border-image-slice: 1;
+        border-width: 1px;
+        border-image-source: linear-gradient(57.59deg, #96ffe6 2.05%, #9bcfff 49.13%, #e88aff 97.2%);
+        background-image: linear-gradient(57.59deg, #96ffe6 2.05%, #9bcfff 49.13%, #e88aff 97.2%);
+        &:hover {
+            filter: drop-shadow(-4px -4px 15px #6d4dd8);
+        }
+    }
+    &:before,
+    &:after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0;
+        border-color: $dark;
+        border-style: solid;
+    }
+    &:before {
+        bottom: 0;
+        right: 0;
+        border-top: 0;
+        border-right: 0px solid transparent;
+        border-left: 15px solid transparent;
+        border-bottom: 15px solid $dark;
+    }
+    &:after {
+        top: 0;
+        left: 0;
+        border-bottom: 0;
+        border-left: 0px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid $dark;
+    }
+    &--transparent {
+        border: 1px solid $white;
+        color: $white;
+        position: relative;
+        background: transparent;
+        &:before,
+        &:after {
+            position: absolute;
+            width: 22px;
+            height: 1px;
+            background-color: $white;
+            content: "";
+        }
+        &:before {
+            transform: rotate(-45deg);
+            transform-origin: 0 0;
+            left: -1px;
+            top: 15px;
+            bottom: auto;
+            right: auto;
+            border: 0;
+        }
+        &:after {
+            bottom: 15px;
+            right: -1px;
+            top: auto;
+            left: auto;
+            border: 0;
+            transform: rotate(-45deg);
+            transform-origin: 100% 100%;
+        }
+    }
+    &:hover {
+        filter: drop-shadow(0 0 5px $white);
+        &#{$parent}--theme-light {
+            filter: drop-shadow(0 0 5px $dark);
+            &#{$parent}--primary {
+                filter: drop-shadow(0 0 5px $blue);
+            }
+        }
+    }
+}

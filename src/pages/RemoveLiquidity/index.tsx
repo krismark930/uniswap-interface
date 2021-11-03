@@ -8,15 +8,13 @@ import ReactGA from 'react-ga'
 import { RouteComponentProps } from 'react-router'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
-import { ButtonPrimary, ButtonLight, ButtonError, ButtonConfirmed } from '../../components/Button'
+import { ButtonPrimary, ButtonLight, ButtonError } from '../../components/Button'
 import { BlueCard, LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
-import DoubleCurrencyLogo from '../../components/DoubleLogo'
-import { AddRemoveTabs } from '../../components/NavigationTabs'
 import { MinimalPositionCard } from '../../components/PositionCard'
-import Row, { RowBetween, RowFixed } from '../../components/Row'
+import Row, { RowFixed } from '../../components/Row'
 
 import Slider from '../../components/Slider'
 import CurrencyLogo from '../../components/CurrencyLogo'
@@ -33,7 +31,7 @@ import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '
 import { currencyId } from '../../utils/currencyId'
 import useDebouncedChangeHandler from '../../utils/useDebouncedChangeHandler'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
-import AppBody from '../AppBody'
+import AppBody from '../../components/AppBody'
 import { ClickableText, MaxButton, Wrapper } from '../Pool/styleds'
 import { useApproveCallback, ApprovalState } from '../../hooks/useApproveCallback'
 import { Dots } from '../../components/swap/styleds'
@@ -342,7 +340,7 @@ export default function RemoveLiquidity({
   function modalHeader() {
     return (
       <AutoColumn gap={'md'} style={{ marginTop: '20px' }}>
-        <RowBetween align="flex-end">
+        <div className='flex justify-between items-end'>
           <Text fontSize={24} fontWeight={500}>
             {parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}
           </Text>
@@ -352,11 +350,11 @@ export default function RemoveLiquidity({
               {currencyA?.symbol}
             </Text>
           </RowFixed>
-        </RowBetween>
+        </div>
         <RowFixed>
           <Plus size="16" color={theme.text2} />
         </RowFixed>
-        <RowBetween align="flex-end">
+        <div className='flex justify-between items-end'>
           <Text fontSize={24} fontWeight={500}>
             {parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}
           </Text>
@@ -366,7 +364,7 @@ export default function RemoveLiquidity({
               {currencyB?.symbol}
             </Text>
           </RowFixed>
-        </RowBetween>
+        </div>
 
         <TYPE.italic fontSize={12} color={theme.text2} textAlign="left" padding={'12px 0 0 0'}>
           {`Output is estimated. If the price changes by more than ${allowedSlippage /
@@ -379,33 +377,32 @@ export default function RemoveLiquidity({
   function modalBottom() {
     return (
       <>
-        <RowBetween>
+        <div className='flex justify-between'>
           <Text color={theme.text2} fontWeight={500} fontSize={16}>
             {'UNI ' + currencyA?.symbol + '/' + currencyB?.symbol} Burned
           </Text>
           <RowFixed>
-            <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} margin={true} />
             <Text fontWeight={500} fontSize={16}>
               {parsedAmounts[Field.LIQUIDITY]?.toSignificant(6)}
             </Text>
           </RowFixed>
-        </RowBetween>
+        </div>
         {pair && (
           <>
-            <RowBetween>
+            <div className='flex justify-between'>
               <Text color={theme.text2} fontWeight={500} fontSize={16}>
                 Price
               </Text>
               <Text fontWeight={500} fontSize={16} color={theme.text1}>
                 1 {currencyA?.symbol} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.symbol}
               </Text>
-            </RowBetween>
-            <RowBetween>
+            </div>
+            <div className='flex justify-between'>
               <div />
               <Text fontWeight={500} fontSize={16} color={theme.text1}>
                 1 {currencyB?.symbol} = {tokenB ? pair.priceOf(tokenB).toSignificant(6) : '-'} {currencyA?.symbol}
               </Text>
-            </RowBetween>
+            </div>
           </>
         )}
         <ButtonPrimary disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)} onClick={onRemove}>
@@ -474,7 +471,6 @@ export default function RemoveLiquidity({
   return (
     <>
       <AppBody>
-        <AddRemoveTabs creating={false} adding={false} />
         <Wrapper>
           <TransactionConfirmationModal
             isOpen={showConfirm}
@@ -502,7 +498,7 @@ export default function RemoveLiquidity({
             </BlueCard>
             <LightCard>
               <AutoColumn gap="20px">
-                <RowBetween>
+              <div className='flex justify-between'>
                   <Text fontWeight={500}>Amount</Text>
                   <ClickableText
                     fontWeight={500}
@@ -512,7 +508,7 @@ export default function RemoveLiquidity({
                   >
                     {showDetailed ? 'Simple' : 'Detailed'}
                   </ClickableText>
-                </RowBetween>
+                </div>
                 <Row style={{ alignItems: 'flex-end' }}>
                   <Text fontSize={72} fontWeight={500}>
                     {formattedAmounts[Field.LIQUIDITY_PERCENT]}%
@@ -521,7 +517,7 @@ export default function RemoveLiquidity({
                 {!showDetailed && (
                   <>
                     <Slider value={innerLiquidityPercentage} onChange={setInnerLiquidityPercentage} />
-                    <RowBetween>
+                    <div className='flex justify-between'>
                       <MaxButton onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')} width="20%">
                         25%
                       </MaxButton>
@@ -534,7 +530,7 @@ export default function RemoveLiquidity({
                       <MaxButton onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')} width="20%">
                         Max
                       </MaxButton>
-                    </RowBetween>
+                    </div>
                   </>
                 )}
               </AutoColumn>
@@ -546,7 +542,7 @@ export default function RemoveLiquidity({
                 </ColumnCenter>
                 <LightCard>
                   <AutoColumn gap="10px">
-                    <RowBetween>
+                    <div className='flex justify-between'>
                       <Text fontSize={24} fontWeight={500}>
                         {formattedAmounts[Field.CURRENCY_A] || '-'}
                       </Text>
@@ -556,8 +552,8 @@ export default function RemoveLiquidity({
                           {currencyA?.symbol}
                         </Text>
                       </RowFixed>
-                    </RowBetween>
-                    <RowBetween>
+                    </div>
+                    <div className='flex justify-between'>
                       <Text fontSize={24} fontWeight={500}>
                         {formattedAmounts[Field.CURRENCY_B] || '-'}
                       </Text>
@@ -567,9 +563,9 @@ export default function RemoveLiquidity({
                           {currencyB?.symbol}
                         </Text>
                       </RowFixed>
-                    </RowBetween>
+                    </div>
                     {chainId && (oneCurrencyIsWETH || oneCurrencyIsETH) ? (
-                      <RowBetween style={{ justifyContent: 'flex-end' }}>
+                      <div className='flex justify-end'>
                         {oneCurrencyIsETH ? (
                           <StyledInternalLink
                             to={`/remove/${currencyA === ETHER ? WETH[chainId].address : currencyIdA}/${
@@ -587,7 +583,7 @@ export default function RemoveLiquidity({
                             Receive ETH
                           </StyledInternalLink>
                         ) : null}
-                      </RowBetween>
+                      </div>
                     ) : null}
                   </AutoColumn>
                 </LightCard>
@@ -640,26 +636,26 @@ export default function RemoveLiquidity({
             )}
             {pair && (
               <div style={{ padding: '10px 20px' }}>
-                <RowBetween>
+                <div className='flex justify-between'>
                   Price:
                   <div>
                     1 {currencyA?.symbol} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.symbol}
                   </div>
-                </RowBetween>
-                <RowBetween>
+                </div>
+                <div className='flex justify-between'>
                   <div />
                   <div>
                     1 {currencyB?.symbol} = {tokenB ? pair.priceOf(tokenB).toSignificant(6) : '-'} {currencyA?.symbol}
                   </div>
-                </RowBetween>
+                </div>
               </div>
             )}
             <div style={{ position: 'relative' }}>
               {!account ? (
                 <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
               ) : (
-                <RowBetween>
-                  <ButtonConfirmed
+                <div className='flex justify-between'>
+                  <ButtonLight
                     onClick={onAttemptToApprove}
                     confirmed={approval === ApprovalState.APPROVED || signatureData !== null}
                     disabled={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
@@ -674,7 +670,7 @@ export default function RemoveLiquidity({
                     ) : (
                       'Approve'
                     )}
-                  </ButtonConfirmed>
+                  </ButtonLight>
                   <ButtonError
                     onClick={() => {
                       setShowConfirm(true)
@@ -686,7 +682,7 @@ export default function RemoveLiquidity({
                       {error || 'Remove'}
                     </Text>
                   </ButtonError>
-                </RowBetween>
+                </div>
               )}
             </div>
           </AutoColumn>

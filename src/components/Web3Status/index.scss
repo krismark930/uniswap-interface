@@ -1,0 +1,21 @@
+.web3-status {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: $inp-bg-dark;
+  padding: 8px;
+  cursor: pointer;
+  &:hover {
+    color: $purple;
+  }
+  &--light {
+    background-color: $inp-bg-light;
+  }
+  &__icon {
+    margin-right: 12px;
+  }
+  &__address {
+    @extend %title;
+    font-size: 18px;
+  }
+}

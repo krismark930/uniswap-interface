@@ -20,19 +20,14 @@ import { ButtonEmpty, ButtonPrimary } from '../Button'
 
 import Column, { AutoColumn } from '../Column'
 import ListLogo from '../ListLogo'
-import Row, { RowFixed, RowBetween } from '../Row'
-import { PaddedColumn, SearchInput, Separator, SeparatorDark } from './styleds'
+import Row, { RowFixed } from '../Row'
+import { SearchInput, SeparatorDark } from './styleds'
 import { useListColor } from 'hooks/useColor'
 import useTheme from '../../hooks/useTheme'
 import ListToggle from '../Toggle/ListToggle'
 import Card from 'components/Card'
 import { CurrencyModalView } from './CurrencySearchModal'
 import { UNSUPPORTED_LIST_URLS } from 'constants/lists'
-
-const Wrapper = styled(Column)`
-  width: 100%;
-  height: 100%;
-`
 
 const UnpaddedLinkStyledButton = styled(LinkStyledButton)`
   padding: 0;
@@ -206,13 +201,6 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
   )
 })
 
-const ListContainer = styled.div`
-  padding: 1rem;
-  height: 100%;
-  overflow: auto;
-  padding-bottom: 80px;
-`
-
 export function ManageLists({
   setModalView,
   setImportList,
@@ -315,8 +303,8 @@ export function ManageLists({
   }, [listUrlInput, setImportList, setListUrl, setModalView, tempList])
 
   return (
-    <Wrapper>
-      <PaddedColumn gap="14px">
+    <div className='w-full h-full flex flex-col'>
+      <div className='p-5 grid gap-3 auto-rows-auto' >
         <Row>
           <SearchInput
             type="text"
@@ -331,11 +319,11 @@ export function ManageLists({
             {addError}
           </TYPE.error>
         ) : null}
-      </PaddedColumn>
+      </div>
       {tempList && (
-        <PaddedColumn style={{ paddingTop: 0 }}>
+        <div className='pt-0 pb-5 px-5 grid gap-3 auto-rows-auto'>
           <Card backgroundColor={theme.bg2} padding="12px 20px">
-            <RowBetween>
+            <div className='flex justify-between'>
               <RowFixed>
                 {tempList.logoURI && <ListLogo logoURI={tempList.logoURI} size="40px" />}
                 <AutoColumn gap="4px" style={{ marginLeft: '20px' }}>
@@ -360,18 +348,16 @@ export function ManageLists({
                   Import
                 </ButtonPrimary>
               )}
-            </RowBetween>
+            </div>
           </Card>
-        </PaddedColumn>
+        </div>
       )}
-      <Separator />
-      <ListContainer>
-        <AutoColumn gap="md">
+      <div className='w-full h-1px bg-grey-purple' />
+      <div className='p-4 h-60vh w-full overflow-auto'>
           {sortedLists.map(listUrl => (
             <ListRow key={listUrl} listUrl={listUrl} />
           ))}
-        </AutoColumn>
-      </ListContainer>
-    </Wrapper>
+      </div>
+    </div>
   )
 }

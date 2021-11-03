@@ -1,4 +1,4 @@
-import { UNI, PRELOADED_PROPOSALS } from './../../constants/index'
+import { UNI, PRELOADED_PROPOSALS } from '../../constants/index'
 import { TokenAmount } from '@uniswap/sdk'
 import { isAddress } from 'ethers/lib/utils'
 import { useGovernanceContract, useUniContract } from '../../hooks/useContract'

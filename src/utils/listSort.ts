@@ -1,4 +1,4 @@
-import { DEFAULT_LIST_OF_LISTS } from './../constants/lists'
+import { DEFAULT_LIST_OF_LISTS } from '../constants/lists'
 
 // use ordering of default list of lists to assign priority
 export default function sortByListPriority(urlA: string, urlB: string) {

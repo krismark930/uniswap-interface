@@ -1,0 +1,59 @@
+.pool {
+  width: 100%;
+  max-width: 640px;
+  &__card {
+    margin-bottom: 36px;
+  }
+}
+
+.pool-card-clip {
+  clip-path: polygon(3% 0, 100% 0, 100% 93%, 97% 100%, 0% 100%, 0 7%)
+}
+.pool-card-gradient {
+  background: radial-gradient(119.32% 503.33% at -8.44% -43.42%, #CE3A8B 0%, rgba(122, 140, 239, 0.44) 49.99%, rgba(233, 233, 233, 0.15) 100%), #F4F4F9;
+}
+.pool-card {
+  color: $dark;
+  padding: 2rem 3rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  @extend .pool-card-clip,
+   .pool-card-gradient;
+  &__title {
+    @extend %title;
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  &__summary {
+    margin-bottom: 24px;
+  }
+  &__read-more {
+    text-decoration: none;
+  }
+}
+.pool-liq {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid $inp-bg-dark;
+    margin-bottom: 8px;
+  }
+  &__title {
+    @extend %title;
+    font-size: 24px;
+  }
+  &__btn-group {
+    display: flex;
+  }
+  &__btn {
+    font-size: 16px;
+    margin-left: 18px;
+  }
+  &__summary {
+    line-height: 1.6;
+    margin: 18px 0;
+  }
+}

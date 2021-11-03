@@ -1,43 +1,8 @@
+import { ButtonPrimary } from 'components/Button'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { ExternalLink } from '../../theme'
-
-const InfoCard = styled.button<{ active?: boolean }>`
-  background-color: ${({ theme, active }) => (active ? theme.bg3 : theme.bg2)};
-  padding: 1rem;
-  outline: none;
-  border: 1px solid;
-  border-radius: 12px;
-  width: 100% !important;
-  &:focus {
-    box-shadow: 0 0 0 1px ${({ theme }) => theme.primary1};
-  }
-  border-color: ${({ theme, active }) => (active ? 'transparent' : theme.bg3)};
-`
-
-const OptionCard = styled(InfoCard as any)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 2rem;
-  padding: 1rem;
-`
-
-const OptionCardLeft = styled.div`
-  ${({ theme }) => theme.flexColumnNoWrap};
-  justify-content: center;
-  height: 100%;
-`
-
-const OptionCardClickable = styled(OptionCard as any)<{ clickable?: boolean }>`
-  margin-top: 0;
-  &:hover {
-    cursor: ${({ clickable }) => (clickable ? 'pointer' : '')};
-    border: ${({ clickable, theme }) => (clickable ? `1px solid ${theme.primary1}` : ``)};
-  }
-  opacity: ${({ disabled }) => (disabled ? '0.5' : '1')};
-`
 
 const GreenCircle = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
@@ -60,60 +25,44 @@ const CircleWrapper = styled.div`
   align-items: center;
 `
 
-const HeaderText = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap};
-  color: ${props => (props.color === 'blue' ? ({ theme }) => theme.primary1 : ({ theme }) => theme.text1)};
-  font-size: 1rem;
-  font-weight: 500;
-`
-
-const SubHeader = styled.div`
-  color: ${({ theme }) => theme.text1};
-  margin-top: 10px;
-  font-size: 12px;
-`
-
-const IconWrapper = styled.div<{ size?: number | null }>`
-  ${({ theme }) => theme.flexColumnNoWrap};
-  align-items: center;
-  justify-content: center;
-  & > img,
-  span {
-    height: ${({ size }) => (size ? size + 'px' : '24px')};
-    width: ${({ size }) => (size ? size + 'px' : '24px')};
-  }
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-    align-items: flex-end;
-  `};
-`
-
 export default function Option({
   link = null,
+  name = '',
   clickable = true,
   size,
   onClick = null,
-  color,
   header,
   subheader = null,
   icon,
   active = false,
+  withPolicy = false,
   id
 }: {
   link?: string | null
+  name: string
   clickable?: boolean
   size?: number | null
   onClick?: null | (() => void)
-  color: string
   header: React.ReactNode
   subheader: React.ReactNode | null
   icon: string
   active?: boolean
-  id: string
+  id: string,
+  withPolicy?: boolean
 }) {
+  const {t} = useTranslation()
   const content = (
-    <OptionCardClickable id={id} onClick={onClick} clickable={clickable && !active} active={active}>
-      <OptionCardLeft>
-        <HeaderText color={color}>
+    <div className={`m-connect-option 
+      ${clickable && !active ? 'm-connect-option--clickable' : ''}
+      ${active ? 'm-connect-option--active' : ''}`} id={id} >
+      <div className='m-connect-option__col'>
+        {subheader && <div className='m-connect-option__subheader'>{subheader}</div>}
+        {withPolicy ? <div className='m-connect-option__policy'>{t('wallet-option.connect.policy')}</div> : null}
+        <div className='m-connect-option__row' >
+          <div className={`m-connect-option__icon ${size ? `m-connect-option__icon--${size}-size` : ''}`}>
+            <img src={icon} alt={'Icon'} />
+          </div>
+          <div className='m-connect-option__name'>
           {active ? (
             <CircleWrapper>
               <GreenCircle>
@@ -124,13 +73,14 @@ export default function Option({
             ''
           )}
           {header}
-        </HeaderText>
-        {subheader && <SubHeader>{subheader}</SubHeader>}
-      </OptionCardLeft>
-      <IconWrapper size={size}>
-        <img src={icon} alt={'Icon'} />
-      </IconWrapper>
-    </OptionCardClickable>
+          </div>
+        </div>
+      </div>
+      <ButtonPrimary className={'m-connect-option__submit'} 
+        onClick={() => typeof onClick === 'function' ? onClick() : null}>
+        {`connect ${name}`}
+        </ButtonPrimary>
+    </div>
   )
   if (link) {
     return <ExternalLink href={link}>{content}</ExternalLink>

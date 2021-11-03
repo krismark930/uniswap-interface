@@ -23,7 +23,10 @@ const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   4: 'rinkeby.',
   5: 'goerli.',
   42: 'kovan.',
-  111: 'local.'
+  111: 'local.',
+  245022934: 'neonmain.',
+  245022926: 'neondev.',
+  245022940: 'neontest.'
 }
 
 export function getEtherscanLink(

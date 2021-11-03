@@ -1,0 +1,125 @@
+
+.input-between-icon {
+  width: 40px;
+    height: 40px;
+    background-color: $dark;
+    margin-top: -18px;
+    margin-bottom: -18px;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    &:before {
+      content: '';
+      position: absolute;
+      width: 80%;
+      height: 80%;
+      z-index: 1;
+      border-radius: 9999px;
+      transition: all 0.15s ease-in-out;
+      background-color: $inp-bg-dark;
+    }
+    svg {
+      position: relative;
+      z-index: 2;
+    }
+    &--light {
+      background-color: $white;
+      
+      &:before {
+        background-color: $inp-bg-light;
+      }
+      svg {
+        path {
+          fill: $dark;
+        }
+      }
+    }
+}
+
+.swap {
+  $parent: &;
+  &--light {
+    #{$parent}__warn-card {
+      color: $white;
+      background-color: $gray;
+    }
+    #{$parent}__icon {
+      background-color: $white;
+      &:before {
+        background-color: $inp-bg-light;
+      }
+      svg {
+        path {
+          fill: $dark;
+        }
+      }
+    }
+  }
+  &__plate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @extend %plate;
+  }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  &__subtitle {
+    @extend %title;
+  }
+  &__title {
+    @extend %title;
+    text-align: center;
+    margin-bottom: 36px;
+    h1 {
+      margin-top: 36px;
+      margin-bottom: 24px;
+      font-weight: 500;
+      line-height: 1;
+      font-size: 56px;
+      @include media('>=xSmall', '<medium') {
+        font-size: 32px;
+      }
+    }
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-weight: 500;
+      font-size: 18px;
+      @include media('>=xSmall', '<medium') {
+        font-size: 14px;
+      }
+    }
+  }
+  &__footer {
+    padding-top: 24px;
+  }
+  &__btn {
+    width: 100%;
+  }
+  &__wrapper {
+    position: relative;
+  }
+  &__warn-card {
+    clip-path: polygon(3% 0, 100% 0, 100% 93%, 97% 100%, 0% 100%, 0 7%);
+    background: $gray;
+    padding: 12px 24px;
+    text-align: center;
+  }
+  &__icon {
+    @extend .input-between-icon;
+    cursor: pointer;
+    &:hover {
+      &:before {
+        background-color: transparent;
+      }
+    }
+  }
+}

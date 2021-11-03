@@ -1,0 +1,70 @@
+.trs-settings {
+  $parent: &;
+  &--light {
+    #{$parent}__title {
+      color: $grey-purple;
+    }
+    #{$parent}__input-panel {
+      background: $inp-bg-light;
+      input {
+        color: $dark;
+      }
+    }
+  }
+  &__title {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  &__options {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  &__option {
+    flex-grow: 1;
+    &:not(:last-of-type) {
+      margin-right: 12px;
+    }
+  }
+  &__input-panel {
+    height: 2rem;
+    position: relative;
+    padding: 0 0.75rem;
+    width: 100%;
+    background: $inp-bg-dark;
+    border: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 12px;
+    input {
+      border: 0;
+      background: transparent;
+      color: $white;
+      outline: none;
+      text-align: right;
+      padding-right: 4px;
+      align-self: stretch;
+      flex-grow: 1;
+    }
+    &--warning {
+      border-color: $red;
+    }
+    &--active {
+      border-width: 1px;
+      border-style: solid;
+      border-color: $blue;
+    }
+  }
+  &__postfix {
+    font-size: 14px;
+    padding-left: 8px;
+  }
+  &__warn {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+}

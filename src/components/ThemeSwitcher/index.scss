@@ -1,0 +1,12 @@
+.theme-switcher {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    filter: drop-shadow(0 0 4px $white);
+  }
+  &--light {
+    &:hover {
+      filter: drop-shadow(0 0 4px $dark);
+    }
+  }
+}

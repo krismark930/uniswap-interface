@@ -4,7 +4,6 @@ import useENS from '../../hooks/useENS'
 import { useActiveWeb3React } from '../../hooks'
 import { ExternalLink, TYPE } from '../../theme'
 import { AutoColumn } from '../Column'
-import { RowBetween } from '../Row'
 import { getEtherscanLink } from '../../utils'
 
 const InputPanel = styled.div`
@@ -97,7 +96,7 @@ export default function AddressInputPanel({
       <ContainerRow error={error}>
         <InputContainer>
           <AutoColumn gap="md">
-            <RowBetween>
+            <div className='flex flex-between'>
               <TYPE.black color={theme.text2} fontWeight={500} fontSize={14}>
                 Recipient
               </TYPE.black>
@@ -106,7 +105,7 @@ export default function AddressInputPanel({
                   (View on Etherscan)
                 </ExternalLink>
               )}
-            </RowBetween>
+            </div>
             <Input
               className="recipient-address-input"
               type="text"
