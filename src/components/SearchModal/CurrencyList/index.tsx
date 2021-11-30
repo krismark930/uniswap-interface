@@ -98,10 +98,12 @@ function TokenTags({ currency }: { currency: Currency }) {
 
 function CurrencyRow({
   currency,
+  style,
   onSelect,
   isSelected,
   otherSelected,
 }: {
+  style?: any,
   currency: Currency
   onSelect: () => void
   isSelected: boolean
@@ -116,7 +118,7 @@ function CurrencyRow({
 
   // only show add or remove buttons if not on selected list
   return (
-    <div
+    <div style={style}
       className={`token-item-${key}
         px-2 py-5 grid grid-cols-menu-item gap-x-4 h-56px
         ${!isSelected ? 'cursor-pointer' : 'pointer-events-none'} ${isSelected || otherSelected ? 'opacity-50' : ''}`}
@@ -176,7 +178,7 @@ export default function CurrencyList({
   } = useAllInactiveTokens()
 
   const Row = useCallback(
-    ({ data, index }) => {
+    ({ data, index, style }) => {
       const currency: Currency = data[index]
       const isSelected = Boolean(selectedCurrency && currencyEquals(selectedCurrency, currency))
       const otherSelected = Boolean(otherCurrency && currencyEquals(otherCurrency, currency))
@@ -188,7 +190,7 @@ export default function CurrencyList({
 
       if (index === breakIndex || !data) {
         return (
-          <FixedContentRow>
+          <FixedContentRow style={style}>
             <LightGreyCard padding="8px 12px" borderRadius="8px">
               <div className='flex justify-between'>
                 <RowFixed>
@@ -206,7 +208,7 @@ export default function CurrencyList({
 
       if (showImport && token) {
         return (
-          <ImportRow
+          <ImportRow style={style}
             token={token}
             showImportView={showImportView}
             setImportToken={setImportToken}
@@ -215,7 +217,7 @@ export default function CurrencyList({
         )
       } else {
         return (
-          <CurrencyRow
+          <CurrencyRow style={style}
             currency={currency}
             isSelected={isSelected}
             onSelect={handleSelect}
@@ -239,11 +241,12 @@ export default function CurrencyList({
 
   const itemKey = useCallback((index: number, data: any) => currencyKey(data[index]), [])
 
-  const currencyListHeight = (window.innerHeight / 100) * 50
+
+  console.log(itemData)
 
   return (
     <FixedSizeList
-      height={currencyListHeight}
+      height={500}
       ref={fixedListRef as any}
       width="100%"
       itemData={itemData}

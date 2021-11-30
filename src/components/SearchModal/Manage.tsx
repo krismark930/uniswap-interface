@@ -15,7 +15,6 @@ const ToggleOption = styled.div<{ active?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
   font-weight: 600;
   background-color: ${({ theme, active }) => (active ? theme.bg1 : theme.bg3)};
   color: ${({ theme, active }) => (active ? theme.text1 : theme.text2)};
@@ -44,8 +43,8 @@ export default function Manage({
   const [showLists, setShowLists] = useState(true)
 
   return (
-    <div className='w-full relative pb-8'>
-      <div className='p-5 grid gap-4 auto-rows-auto'>
+    <div className='w-full relative'>
+      <div className='grid gap-4 auto-rows-auto'>
         <div className='modal-header'>
           <ArrowLeft style={{ cursor: 'pointer' }} onClick={() => setModalView(CurrencyModalView.search)} />
           <Text fontWeight={500} fontSize={20}>
@@ -55,7 +54,7 @@ export default function Manage({
         </div>
       </div>
       <div className='pt-5 pb-0 px-5 grid gap-4 auto-rows-auto'>
-        <div className='flex justify-between p-1 bg-inp-dark'>
+        <div className='flex justify-between bg-inp-dark'>
           <ToggleOption onClick={() => setShowLists(!showLists)} active={showLists}>
             Lists
           </ToggleOption>

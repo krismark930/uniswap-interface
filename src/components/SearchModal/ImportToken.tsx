@@ -58,7 +58,7 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
 
   return (
     <div className='w-full overflow-auto relative'>
-      <div className='p-5 grid gap-4 auto-rows-auto w-full flex-grow' >
+      <div className='grid gap-4 auto-rows-auto w-full flex-grow' >
         <div className='modal-header'>
           {onBack ? <ArrowLeft style={{ cursor: 'pointer' }} onClick={onBack} /> : <div></div>}
           <TYPE.mediumHeader>Import {tokens.length > 1 ? 'Tokens' : 'Token'}</TYPE.mediumHeader>

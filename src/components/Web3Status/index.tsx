@@ -84,7 +84,7 @@ function StatusIcon({ connector }: { connector: AbstractConnector }) {
   return null
 }
 
-function Web3StatusInner() {
+function Web3StatusInner({className = ''}) {
   const { t } = useTranslation()
   const { account, connector, error } = useWeb3React()
 
@@ -107,7 +107,7 @@ function Web3StatusInner() {
 
   if (account) {
     return (
-      <div id="web3-status-connected" className={`web3-status ${hasPendingTransactions ? 'web3-status--pending' : ''} ${!darkMode ? 'web3-status--light' : ''}`} onClick={toggleWalletModal}>
+      <div id="web3-status-connected" className={`web3-status ${className} ${hasPendingTransactions ? 'web3-status--pending' : ''} ${!darkMode ? 'web3-status--light' : ''}`} onClick={toggleWalletModal}>
         <div className='web3-status__icon'>{!hasPendingTransactions && connector && <StatusIcon connector={connector} />}</div>
         {hasPendingTransactions ? (
           <div className='flex justify-between'>
@@ -137,7 +137,7 @@ function Web3StatusInner() {
   }
 }
 
-export default function Web3Status() {
+export default function Web3Status({className = ''}) {
   const { active, account } = useWeb3React()
   const contextNetwork = useWeb3React(NetworkContextName)
 
@@ -149,7 +149,7 @@ export default function Web3Status() {
 
   return (
     <>
-      <Web3StatusInner />
+      <Web3StatusInner className={className}/>
       <WalletModal ENSName={ENSName ?? undefined}/>
     </>
   )

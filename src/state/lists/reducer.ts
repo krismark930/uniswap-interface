@@ -58,7 +58,7 @@ export default createReducer(initialState, builder =>
     .addCase(fetchTokenList.fulfilled, (state, { payload: { requestId, tokenList, url } }) => {
       const current = state.byUrl[url]?.current
       const loadingRequestId = state.byUrl[url]?.loadingRequestId
-
+      console.log(initialState, url)
       // no-op if update does nothing
       if (current) {
         const upgradeType = getVersionUpgrade(current.version, tokenList.version)

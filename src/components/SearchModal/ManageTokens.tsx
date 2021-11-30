@@ -72,7 +72,7 @@ export default function ManageTokens({
   }, [userAddedTokens, chainId, removeToken])
 
   return (
-    <div className='w-full h-full relative pb-10'>
+    <div className='w-full h-full relative'>
       <div className='flex flex-col flex-grow flex-shrink w-full'>
         <div className='p-4 grid gap-3 auto-rows-auto'>
           <div className='flex'>
@@ -113,7 +113,7 @@ export default function ManageTokens({
           {tokenList}
         </div>
       </div>
-      <div className='absolute bottom-0 w-full p-5 border-t border-grey-purple'>
+      <div className=' w-full p-5 border-t border-grey-purple'>
         <TYPE.darkGray>Tip: Custom tokens are stored locally in your browser</TYPE.darkGray>
       </div>
     </div>

@@ -18,6 +18,7 @@
   "sendAnyway": "Send Anyway",
   "pool": "Pool",
   "getTokens": "Get tokens",
+  "convertTokens": "Convert SPL to ERC-20",
   "betaWarning": "This project is in beta. Use at your own risk.",
   "input": "Input",
   "output": "Output",

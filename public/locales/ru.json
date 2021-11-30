@@ -18,6 +18,8 @@
   "selectToken": "Выберите токен",
   "searchOrPaste": "Поиск токена или вставить адрес токена",
   "noExchange": "Обмен не найден",
+  "getTokens": "Получить токен",
+  "convertTokens": "Конвертировать в ERC-20",
   "exchangeRate": "Курс обмена",
   "enterValueCont": "Введите {{ missingCurrencyValue }}, чтобы продолжить.",
   "selectTokenCont": "Введите токен, чтобы продолжить.",
