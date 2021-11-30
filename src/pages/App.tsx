@@ -29,7 +29,7 @@ import Vote from './Vote'
 import VotePage from './Vote/VotePage'
 import ThemeSwitcher from '../components/ThemeSwitcher'
 import TokenGetter from './TokenGetter'
-import SplConverter from './SplConverter'
+// import { SplConverter } from './SplConverter'
 
 function TopLevelModals() {
   const open = useModalOpen(ApplicationModal.ADDRESS_CLAIM)
@@ -57,7 +57,7 @@ export default function App() {
             <Switch>
               <Route exact strict path="/swap" component={Swap} />
               <Route exact strict path='/get-tokens' component={TokenGetter}/>
-              <Route exact strict path='/spl-convert' component={SplConverter}/>
+              {/* <Route exact strict path='/spl-convert' component={SplConverter}/> */}
               <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
               <Route exact strict path="/send" component={RedirectPathToSwapOnly} />

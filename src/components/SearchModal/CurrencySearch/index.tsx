@@ -2,7 +2,7 @@ import { Currency, ETHER, Token } from '@uniswap/sdk'
 import React, { KeyboardEvent, RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import ReactGA from 'react-ga'
 import { useTranslation } from 'react-i18next'
-import { useAllTokens, useDefaultTokens, useAllInactiveTokens, useToken, useIsUserAddedToken, useFoundOnInactiveList } from '../../../hooks/Tokens'
+import { useAllTokens, useToken, useIsUserAddedToken, useFoundOnInactiveList } from '../../../hooks/Tokens'
 import { CloseIcon, TYPE } from '../../../theme'
 import {ButtonPrimary} from '../../Button'
 import { isAddress } from '../../../utils'
@@ -55,9 +55,6 @@ export function CurrencySearch({
 
   const allTokens = useAllTokens()
 
-  const defaultTokens = useDefaultTokens()
-
-  const allInactiveTokens = useAllInactiveTokens()
 
   // if they input an address, use it
   const isAddressSearch = isAddress(debouncedQuery)
@@ -81,7 +78,6 @@ export function CurrencySearch({
 
   const tokenComparator = useTokenComparator(invertSearchOrder)
 
-  console.log(allTokens, allInactiveTokens, defaultTokens)
 
   const filteredTokens: Token[] = useMemo(() => {
     return filterTokens(Object.values(allTokens), debouncedQuery)
@@ -145,14 +141,14 @@ export function CurrencySearch({
 
   return (
     <div className='currency-search'>
-      <div className='p-5 grid gap-4 auto-rows-auto'>
+      <div className='grid gap-4 auto-rows-auto'>
         <div className='modal-header'>
           <div className='text-lg font-title'>
             Select a token
           </div>
           <CloseIcon onClick={onDismiss} />
         </div>
-        <div className='flex'>
+        <div className='flex p-4'>
           <input className={`search-input ${!darkMode ? 'search-input--light' : ''}`}
             type="text"
             id="token-search-input"

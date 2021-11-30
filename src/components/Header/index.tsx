@@ -131,9 +131,9 @@ export default function Header() {
           <NavLink id={`get-tokens-nav-link`} to={'/get-tokens'} {...navLinkProps}>
             {t('getTokens')}
           </NavLink>
-          <NavLink id={`spl-convert-nav-link`} to={'/spl-convert'} {...navLinkProps}>
+          {/* <NavLink id={`spl-convert-nav-link`} to={'/spl-convert'} {...navLinkProps}>
             {t('convertTokens')}
-          </NavLink>
+          </NavLink> */}
         </HeaderLinks>
         <HeaderControls>
         <HeaderElement>

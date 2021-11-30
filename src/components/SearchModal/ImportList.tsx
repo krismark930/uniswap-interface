@@ -74,7 +74,7 @@ export function ImportList({ listURL, list, setModalView, onDismiss }: ImportPro
           <TYPE.mediumHeader>Import List</TYPE.mediumHeader>
           <CloseIcon onClick={onDismiss} />
         </div>
-      <div className='p-5 grid gap-4 auto-rows-auto'>
+      <div className='grid gap-4 auto-rows-auto'>
         <div className='grid gap-4 auto-rows-auto' >
           <Card backgroundColor={theme.bg2} padding="12px 20px">
             <div className='flex justify-between'>

@@ -80,7 +80,7 @@ const RowWrapper = styled(Row)<{ bgColor: string; active: boolean }>`
   transition: 200ms;
   align-items: center;
   padding: 1rem;
-  border-radius: 20px;
+  margin-bottom: 12px;
 `
 
 function listUrlRowHTMLId(listUrl: string) {
