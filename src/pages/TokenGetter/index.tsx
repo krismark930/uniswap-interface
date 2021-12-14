@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useActiveWeb3React } from '../../hooks'
 import { useTranslation } from 'react-i18next';
 import { ButtonPrimary } from '../../components/Button';
@@ -12,7 +12,6 @@ export default function TokenGetter() {
   const {t} = useTranslation()
   const toggleWalletModal = useWalletModalToggle()
   const [darkMode] = useDarkModeManager()
-  useEffect(() => console.log(account))
   const renderByAccountState = () => {
     if (error) {
       return <div className='token-getter__error-wrapper'>
