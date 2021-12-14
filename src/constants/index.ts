@@ -33,15 +33,15 @@ export const TIMELOCK_ADDRESS = '0xaD2d6a3fB00D6aD878c11eAf06F848c311CFf372'
 
 const UNI_ADDRESS = '0x51179e1BCe688B1c8047B01422FB0f8634E77eb3'
 export const UNI: { [chainId in ChainId]: Token } = {
-  [ChainId.MAINNET]: new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.LOCAL]: new Token(ChainId.LOCAL, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.NEONMAIN]: new Token(ChainId.NEONMAIN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.NEONDEV]: new Token(ChainId.NEONDEV, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.NEONTEST]: new Token(ChainId.NEONTEST, UNI_ADDRESS, 18, 'UNI', 'Uniswap')
+  [ChainId.MAINNET]: new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'NSWAP', 'NeonSwap'),
+  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, UNI_ADDRESS, 18, 'NSWAP', 'NeonSwap'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'NSWAP', 'NeonSwap'),
+  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, UNI_ADDRESS, 18, 'NSWAP', 'NeonSwap'),
+  [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'NSWAP', 'NeonSwap'),
+  [ChainId.LOCAL]: new Token(ChainId.LOCAL, UNI_ADDRESS, 18, 'NSWAP', 'NeonSwap'),
+  [ChainId.NEONMAIN]: new Token(ChainId.NEONMAIN, UNI_ADDRESS, 18, 'NSWAP', 'NeonSwap'),
+  [ChainId.NEONDEV]: new Token(ChainId.NEONDEV, UNI_ADDRESS, 18, 'NSWAP', 'NeonSwap'),
+  [ChainId.NEONTEST]: new Token(ChainId.NEONTEST, UNI_ADDRESS, 18, 'NSWAP', 'NeonSwap')
 }
 
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
