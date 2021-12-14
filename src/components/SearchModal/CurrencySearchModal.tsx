@@ -65,7 +65,6 @@ export default function CurrencySearchModal({
         <CurrencySearch
           isOpen={isOpen}
           onDismiss={onDismiss}
-          list={importList}
           onCurrencySelect={handleCurrencySelect}
           selectedCurrency={selectedCurrency}
           otherSelectedCurrency={otherSelectedCurrency}
