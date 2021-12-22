@@ -183,7 +183,7 @@ html, input, textarea, button {
 }
 @supports (font-variation-settings: normal) {
   html, input, textarea, button {
-    font-family: 'Inter var', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 }
 

@@ -3,7 +3,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      'title': `'Chakra Petch'`,
+      'title': `'Inter'`,
       'body': `'Archivo'`
     },
     extend: {
