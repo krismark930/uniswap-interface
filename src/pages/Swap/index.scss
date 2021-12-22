@@ -2,7 +2,7 @@
 .input-between-icon {
   width: 40px;
     height: 40px;
-    background-color: $dark;
+    background-color: #191128;
     margin-top: -18px;
     margin-bottom: -18px;
     position: relative;
@@ -48,7 +48,7 @@
       background-color: $gray;
     }
     #{$parent}__icon {
-      background-color: $white;
+      background-color: #EEE6FD;
       &:before {
         background-color: $inp-bg-light;
       }

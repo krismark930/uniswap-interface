@@ -1,0 +1,1 @@
+Copy content of this folder to node_modules/@uniswap/sdk/dist
