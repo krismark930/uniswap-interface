@@ -79,6 +79,9 @@ export default function Pool() {
           <div className='pool-liq__header'>
             <div className='pool-liq__title'>{t('pool.liq.title')}</div>
             <div className='pool-liq__btn-group'>
+              <NavLink to={'/create/ETH'}>
+                <ButtonEmpty className='pool-liq__btn' >{t('pool.liq.action.createPair')}</ButtonEmpty>
+              </NavLink>
               <NavLink to={'/add/ETH'}>
                 <ButtonEmpty className='pool-liq__btn' >{t('pool.liq.action.addLiq')}</ButtonEmpty>
               </NavLink>

@@ -13,15 +13,6 @@ export function useActiveWeb3React(): Web3ReactContextInterface<Web3Provider> & 
   return context.active ? context : contextNetwork
 }
 
-export function useNetworkType() {
-  const {library, active} = useWeb3ReactCore<Web3Provider>()
-  if (active) {
-    return library?.network && library.network.chainId ? ChainId[library.network.chainId] : ''
-  } else {
-    return ''
-  }
-}
-
 export function useEagerConnect() {
   const { activate, active } = useWeb3ReactCore() // specifically using useWeb3ReactCore because of what this hook does
   const [tried, setTried] = useState(false)

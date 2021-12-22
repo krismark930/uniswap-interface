@@ -18,7 +18,6 @@ import ImportRow from '../ImportRow'
 import useDebounce from 'hooks/useDebounce'
 import { useDarkModeManager } from 'state/user/hooks'
 import { FixedSizeList } from 'react-window'
-import { TokenList } from '@uniswap/token-lists'
 
 interface CurrencySearchProps {
   isOpen: boolean
@@ -26,7 +25,6 @@ interface CurrencySearchProps {
   selectedCurrency?: Currency | null
   onCurrencySelect: (currency: Currency) => void
   otherSelectedCurrency?: Currency | null
-  list: TokenList | undefined
   showManageView: () => void
   showImportView: () => void
   setImportToken: (token: Token) => void
