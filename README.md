@@ -16,7 +16,7 @@ Preparation steps:
 
 2. Install dependencies `yarn`
 3. Patch Uniswap SDK: `patch -p0 <node_modules.patch`
-4. Change contract addresses to actual: `./update_contracts.sh`
+4. Change contract addresses to actual: `./update_contracts_new.sh`
 5. Run: `yarn start`
 
 
