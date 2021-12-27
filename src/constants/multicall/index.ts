@@ -1,7 +1,7 @@
 import { ChainId } from '@uniswap/sdk'
 import MULTICALL_ABI from './abi.json'
 
-const MULTICALL_ADDRESS = '0x5a379A80Ae648748baBcE274944Da26c6aa9bF9f'
+const MULTICALL_ADDRESS = '0x7cc33357FfCFaF6ac5CD66cEE1944B5d7AF9facB'
 const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: '0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441',
   [ChainId.ROPSTEN]: '0x1BdB91F9C153E5cd02E9867bABe97951E821D6F7',

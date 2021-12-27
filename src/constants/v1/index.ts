@@ -3,7 +3,7 @@ import { ChainId } from '@uniswap/sdk'
 import V1_EXCHANGE_ABI from './v1_exchange.json'
 import V1_FACTORY_ABI from './v1_factory.json'
 
-const V1_FACTORY_ADDRESS = '0xFBE1e2fA58798508Dbad3EbD0890D59F1559E7cf'
+const V1_FACTORY_ADDRESS = '0xA78f20fFE46a3e947371bb7D45B78c2953060400'
 const V1_FACTORY_ADDRESSES: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: '0xc0a47dFe034B400B47bDaD5FecDa2621de6c4d95',
   [ChainId.ROPSTEN]: '0xC184C4E0D17AeCEb270DC42fFe5e3Ec1c77C7563',
