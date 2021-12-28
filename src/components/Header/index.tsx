@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 import Logo from '../../assets/svg/logo_light.svg'
 import LogoDark from '../../assets/svg/logo_dark.svg'
-import { useActiveWeb3React } from '../../hooks'
+import { useActiveWeb3React, useNetworkType } from '../../hooks'
 import { useDarkModeManager } from '../../state/user/hooks'
 // import { useETHBalances /*, useAggregateUniBalance */} from '../../state/wallet/hooks'
 import { CardNoise } from '../earn/styled'
@@ -22,6 +22,8 @@ import { useUserHasSubmittedClaim } from '../../state/transactions/hooks'
 import { Dots } from '../swap/styleds'
 import Modal from '../Modal'
 import UniBalanceContent from './UniBalanceContent'
+import { useWeb3React } from '@web3-react/core'
+import { ChainId } from '@uniswap/sdk'
 const HeaderControls = styled.div`
   display: flex;
   flex-direction: row;
@@ -83,8 +85,11 @@ const UNIWrapper = styled.span`
   }
 `
 export default function Header() {
+  const { library, active } = useWeb3React()
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
+  const network = useNetworkType()
+
 
   // const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
   const [darkMode] = useDarkModeManager()
@@ -128,9 +133,18 @@ export default function Header() {
           >
             {t('pool')}
           </NavLink>
-          <NavLink id={`get-tokens-nav-link`} to={'/get-tokens'} {...navLinkProps}>
-            {t('getTokens')}
-          </NavLink>
+          {network && network !== 'NEONMAIN' ? 
+            <NavLink id={`get-tokens-nav-link`} to={'/get-tokens'} {...navLinkProps}>
+              {t('getTokens')}
+            </NavLink> 
+             : null
+          }
+          <a className='header__link'
+            rel='noopener noreferrer'
+            target="_blank"
+            href="https://neonpass.live">
+              Transfer tokens
+          </a>
           {/* <NavLink id={`spl-convert-nav-link`} to={'/spl-convert'} {...navLinkProps}>
             {t('convertTokens')}
           </NavLink> */}
@@ -173,6 +187,9 @@ export default function Header() {
               <CardNoise />
             </UNIWrapper>
           )} */}
+          {active && library.network && library.network.chainId ? 
+          <div className='mr-2 text-sm font-title'>{ChainId[library.network.chainId]}</div>
+          : null}
           <div className={`header__account ${!!account ? 'header__account--active' : ''}`} style={{ pointerEvents: 'auto' }}>
             {/* {account && userEthBalance ? (
               <div className='header__balance'>
