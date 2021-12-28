@@ -12,7 +12,6 @@ import Column from '../../Column'
 import { RowFixed } from '../../Row'
 import CurrencyLogo from '../../CurrencyLogo'
 import { MouseoverTooltip } from '../../Tooltip'
-import Loader from '../../Loader'
 import { isTokenOnList } from '../../../utils'
 import ImportRow from '../ImportRow'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
@@ -135,7 +134,7 @@ function CurrencyRow({
       </Column>
       <TokenTags currency={currency} />
       <RowFixed style={{ justifySelf: 'flex-end' }}>
-        {balance ? <Balance balance={balance} /> : account ? <Loader /> : null}
+        {balance ? <Balance balance={balance} /> : null }
       </RowFixed>
     </div>
   )
