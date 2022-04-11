@@ -103,7 +103,7 @@
   "trsSettings.deadline.title": "Transaction deadline",
   "trsSettings.deadline.tip": "Your transaction will revert if it is pending for more than this long.",
   "settings.interface.title": "Interface Settings",
-  "tokenGetter.locker": "Next request will be unlock after 10 seconds expiration for a security reasons.",
+  "tokenGetter.locker": "Next request will be unlock after one minute expiration for a security reasons.",
   "pool.card.title": "Liquidity provider rewards",
   "pool.card.summary": "Liquidity providers earn a 0.3% fee on all trades proportional to their share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.",
   "pool.card.readMore": "Read more about providing liquidity",
